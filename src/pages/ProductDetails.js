@@ -28,11 +28,7 @@ const ProductDetails = () => {
       setSelectedImageIndex(0); // Reset to first image when product changes
     }
     setQuantity(1); // Reset quantity when product changes
-    // Debug: Log product data
-    if (product) {
-      console.log('Product data:', product);
-      console.log('Product Image Gallery:', product.productImageGallery);
-    }
+    // Product data loaded successfully
   }, [product]);
 
 
@@ -167,11 +163,9 @@ const ProductDetails = () => {
                       alt={`${product.name} ${selectedScent} image`}
                       className="max-w-full max-h-[500px] object-contain rounded-lg"
                       onError={(e) => {
-                        console.log('Main image failed to load:', product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex]);
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'block';
                       }}
-                      onLoad={() => console.log('Main image loaded successfully:', product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex])}
                     />
                     <div style={{display: 'none'}} className="text-center text-gray-500">
                       <p>Main image failed to load</p>
@@ -196,11 +190,9 @@ const ProductDetails = () => {
                                 alt={`${product.name} ${scentName} image`}
                                 className="max-w-full max-h-[250px] object-contain rounded-lg"
                                 onError={(e) => {
-                                  console.log('Image failed to load:', img.url || img);
                                   e.target.style.display = 'none';
                                   e.target.nextSibling.style.display = 'block';
                                 }}
-                                onLoad={() => console.log('Image loaded successfully:', img.url || img)}
                               />
                               <div style={{display: 'none'}} className="text-center text-gray-500">
                                 <p>Image failed to load</p>
