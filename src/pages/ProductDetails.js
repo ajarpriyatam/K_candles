@@ -160,7 +160,7 @@ const ProductDetails = () => {
                   <div className="min-h-[400px] flex items-center justify-center">
                     <img
                       src={product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex]}
-                      alt={`${product.name} ${selectedScent} image`}
+                      alt={`${product.name} ${selectedScent}`}
                       className="max-w-full max-h-[500px] object-contain rounded-lg"
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -187,7 +187,7 @@ const ProductDetails = () => {
                             <div className="min-h-[200px] flex items-center justify-center">
                               <img
                                 src={img.url || img}
-                                alt={`${product.name} ${scentName} image`}
+                                alt={`${product.name} ${scentName}`}
                                 className="max-w-full max-h-[250px] object-contain rounded-lg"
                                 onError={(e) => {
                                   e.target.style.display = 'none';

@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { GiCandleFlame, GiCandleHolder, GiCandleLight } from "react-icons/gi";
-import { FaGift } from "react-icons/fa";
-import { MdHome } from "react-icons/md";
 
 const CandleCollections = () => {
   const collections = [

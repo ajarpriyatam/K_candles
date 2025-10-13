@@ -7,7 +7,7 @@ import { getProduct } from "../actions/productAction";
 const Products = () => {
   const dispatch = useDispatch();
   const { products: allProducts, loading, error } = useSelector((state) => state.products)
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory] = useState("All");
 
   // Filter products based on selected category
   const filteredProducts = allProducts ? allProducts.filter((product) => {
@@ -15,22 +15,6 @@ const Products = () => {
     return product.category === selectedCategory;
   }) : [];
 
-  // Category button component
-  const CategoryButton = ({ name }) => (
-    <span className="relative group">
-      <span
-        className={`text-sm font-medium cursor-pointer transition-all duration-300 ${selectedCategory === name
-            ? "text-[#FF8C42]"
-            : "text-gray-600 hover:text-[#FF8C42]"
-          }`}
-        onClick={() => setSelectedCategory(name)}
-      >
-        {name}
-      </span>
-      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#FF8C42] transition-all duration-300 ${selectedCategory === name ? "w-full" : "w-0 group-hover:w-full"
-        }`}></span>
-    </span>
-  );
 
   useEffect(() => {
     dispatch(getProduct());
