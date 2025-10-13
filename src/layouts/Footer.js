@@ -1,79 +1,149 @@
 import React from "react";
 import Logo from "../component/common/Logo";
 import SocialIcons from "../component/common/SocialIcons";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const quickLinks = [
+    { name: "About Us", link: "/about" },
+    { name: "FAQs", link: "/faq" },
+    { name: "Return & Exchange Policy", link: "/returns" },
+    { name: "Shipping & Cancellations", link: "/shipping" },
+  ];
+
+  const shopLinks = [
+    { name: "New Arrivals", link: "/new-arrivals/collection" },
+    { name: "Diwali Special", link: "/diwali/collection" },
+    { name: "Gift Sets", link: "/giftsets/collection" },
+    { name: "All Collections", link: "/all/collection" },
+  ];
+
   return (
-    <footer className="w-full bg-[#1a1a1a] py-10 px-5">
-      <div className="container min-w-[100%] sm:max-w-[90%] mx-auto px-[20px] flex flex-col md:flex-row justify-between gap-10 md:gap-5 text-center md:text-left">
-        <div className="flex flex-col items-start gap-[25px]">
-          <Logo />
-          <h6 className="max-w-[437px] text-left text-gray-300">
-            Will surprise you
-            <br /> Benefits and plenty of surprises are waiting for you!
-          </h6>
-          <div className="flex gap-4">
-            <SocialIcons
-              to={"/"}
-              icon={FaFacebookF}
-              className="hover:!text-[#ff6b00]"
-            />
-            <SocialIcons
-              to={"/"}
-              icon={FaInstagram}
-              className="hover:!text-[#ff6b00]"
-            />
+    <footer className="w-full bg-gradient-to-br from-gray-100 via-white to-gray-100 py-12 px-5 border-t-2 border-gray-200">
+      <div className="container max-w-7xl mx-auto px-6">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Brand Section */}
+          <div className="flex flex-col items-start gap-6">
+            <Logo />
+            <p className="max-w-[280px] text-left text-gray-600 text-sm leading-relaxed">
+              Luxury for every home. Stay one step ahead in the world of Aroma & Candles.
+            </p>
+            <div className="flex gap-3">
+              <SocialIcons
+                to={"https://facebook.com"}
+                icon={FaFacebookF}
+                className="hover:!text-[#FF8C42]"
+              />
+              <SocialIcons
+                to={"https://instagram.com"}
+                icon={FaInstagram}
+                className="hover:!text-[#FF8C42]"
+              />
+              <SocialIcons
+                to={"https://youtube.com"}
+                icon={FaYoutube}
+                className="hover:!text-[#FF8C42]"
+              />
+              <SocialIcons
+                to={"https://pinterest.com"}
+                icon={FaPinterest}
+                className="hover:!text-[#FF8C42]"
+              />
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-lg text-[#FF8C42] font-semibold">
+              Quick Links
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {quickLinks.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item.link}
+                    className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Shop Links */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-lg text-[#FF8C42] font-semibold">
+              Shop
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {shopLinks.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item.link}
+                    className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-lg text-[#FF8C42] font-semibold">
+              Get In Touch
+            </h3>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <Link
+                  to="tel:+91-1234567890"
+                  className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                >
+                  P: +91-1234567890
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='mailto:contact@kavera.co.in'
+                  className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors break-all"
+                >
+                  E: contact@kavera.co.in
+                </Link>
+              </li>
+              <li className="text-gray-600 text-[14px]">
+                Shipping just Rs. 75 for orders upto Rs. 500!
+              </li>
+              <li className="text-gray-600 text-[14px]">
+                COD Available for Orders up to Rs. 250!
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* <div className="flex flex-col gap-[30px]">
-          <h3 className="text-[22px] leading-[25.94px] text-[#ff6b00] font-semibold text-left">
-            About
-          </h3>
-          <ul className="flex flex-col gap-[20px] text-left">
-            {footerAbouts.map((item, index) => (
-              <li key={index}>
-                <Link
-                  to={item.link}
-                  className="text-gray-300 text-[16px] leading-[25.2px] hover:text-[#ff6b00] transition-colors"
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-
-        <div className="flex flex-col gap-[30px]">
-          <h3 className="text-[22px] leading-[25.94px] text-[#ff6b00] font-semibold text-left">
-            Get In Touch
-          </h3>
-          <ul className="flex flex-col gap-[20px] text-left">
-            <li>
-              <Link
-                to="tel:+91-1234567890"
-                className="text-gray-300 text-[16px] leading-[25.2px] hover:text-[#ff6b00] transition-colors"
-              >
-                P: +91-7983501137
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-[12px] text-center md:text-left">
+              © 2025 KAVERA. All rights reserved.
+            </p>
+            <div className="flex gap-6 text-[12px]">
+              <Link to="/privacy" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+                Privacy Policy
               </Link>
-            </li>
-            <li>
-              <Link
-                to='mailto:abc@gmail.com'
-                className="text-gray-300 text-[16px] leading-[25.2px] hover:text-[#ff6b00] transition-colors"
-              >
-                E: LS.SoleStyle@gmail.com
+              <Link to="/terms" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+                Terms & Conditions
               </Link>
-            </li>
-          </ul>
+              <Link to="/refund" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+                Refund Policy
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-
-      <h6 className="text-gray-400 md:mt-[60px] text-center text-[12px]">
-        © 2025 LS SoleStyle. All rights reserved.
-      </h6>
     </footer>
   );
 };

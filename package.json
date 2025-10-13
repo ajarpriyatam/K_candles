@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "kavera-candles",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -62,5 +62,5 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^15.15.0"
   },
-  "proxy": "https://b-ls-solestyle.vercel.app"
+  "proxy": "https://kavera-api.vercel.app"
 }

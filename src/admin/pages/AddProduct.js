@@ -38,9 +38,11 @@ const AddProduct = () => {
     const [showValidationError, setShowValidationError] = useState(false);
 
     const categoryOptions = [
-        { label: "Mens", value: "Mens" },
-        { label: "Women", value: "Women" },
-        { label: "Kids", value: "Kids" }
+        { label: "Jar Candles", value: "Jar Candles" },
+        { label: "Pillar Candles", value: "Pillar Candles" },
+        { label: "T-Light Candles", value: "T-Light Candles" },
+        { label: "Gift Sets", value: "Gift Sets" },
+        { label: "Home Decor", value: "Home Decor" }
     ];
 
     // Populate form data when in edit mode
@@ -335,7 +337,7 @@ const AddProduct = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="flex-1">
                                             <input
-                                                placeholder="Enter size (e.g., 8, 9, 10)"
+                                                placeholder="Enter size (e.g., Small, Medium, Large)"
                                                 value={formData.sizes}
                                                 onChange={(e) => handleInputChange('sizes', e.target.value)}
                                                 className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-white/90 text-gray-800 ${

@@ -56,11 +56,27 @@ const Navbar = () => {
   return (
     <ThemeProvider theme={theme}>
       <div
-        className={`flex fixed z-50 h-[67px] w-full justify-between items-center min-w-[100%] sm:max-w-[90%] mx-auto px-[40px] ${isScrolled ? "border-b border-gray-800 bg-black/95" : "bg-black/80"
+        className={`flex fixed z-50 h-[67px] w-full justify-between items-center min-w-[100%] sm:max-w-[90%] mx-auto px-4 lg:px-[40px] ${isScrolled ? "border-b border-gray-200 bg-white/95 shadow-md" : "bg-white/90"
           } backdrop-blur-sm transition-all duration-300`}
       >
-        <Logo />
+        {/* Mobile/Tablet: Menu Button on Left */}
+        <div className="lg:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700 hover:text-[#FF8C42] transition-colors duration-300 p-1">
+            <HiOutlineBars2 className="h-[24px] w-[24px]" />
+          </button>
+        </div>
 
+        {/* Desktop: Logo on Left */}
+        <div className="hidden lg:block">
+          <Logo />
+        </div>
+
+        {/* Mobile/Tablet: Logo in Center */}
+        <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+          <Logo />
+        </div>
+
+        {/* Desktop: Navigation Links */}
         <div className="hidden lg:flex">
           <ul className="flex justify-center space-x-[50px]">
           <Link
@@ -68,11 +84,11 @@ const Navbar = () => {
               to='/'
             >
               <span
-                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${activeNavItem === '/all/collection'
-                  ? "text-orange-500"
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${activeNavItem === '/'
+                  ? "text-[#FF8C42]"
                   : isScrolled
-                    ? "text-slate-100 group-hover:text-orange-500"
-                    : "text-slate-300 group-hover:text-orange-500"
+                    ? "text-gray-700 group-hover:text-[#FF8C42]"
+                    : "text-gray-600 group-hover:text-[#FF8C42]"
                   }`}
               >
                 Home
@@ -84,44 +100,67 @@ const Navbar = () => {
             >
               <span
                 className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${activeNavItem === '/all/collection'
-                  ? "text-orange-500"
+                  ? "text-[#FF8C42]"
                   : isScrolled
-                    ? "text-slate-100 group-hover:text-orange-500"
-                    : "text-slate-300 group-hover:text-orange-500"
+                    ? "text-gray-700 group-hover:text-[#FF8C42]"
+                    : "text-gray-600 group-hover:text-[#FF8C42]"
                   }`}
               >
-                Products
+                Collections
               </span>
             </Link>
+            <a
+              className="flex items-center cursor-pointer group"
+              href='#featured'
+            >
+              <span
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-gray-700 group-hover:text-[#FF8C42]"
+                    : "text-gray-600 group-hover:text-[#FF8C42]"
+                  }`}
+              >
+                New Arrivals
+              </span>
+            </a>
+            <a
+              className="flex items-center cursor-pointer group"
+              href='#newsletter'
+            >
+              <span
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-gray-700 group-hover:text-[#FF8C42]"
+                    : "text-gray-600 group-hover:text-[#FF8C42]"
+                  }`}
+              >
+                Offers
+              </span>
+            </a>
           </ul>
         </div>
 
+        {/* Cart Button on Right (All Screens) */}
         <div className="flex flex-row gap-5">
-          <Link to={"/cart"} className="relative p-2 text-gray-300 hover:text-orange-500 transition-colors duration-300">
+          <Link to={"/cart"} className="relative p-1 text-gray-700 hover:text-[#FF8C42] transition-colors duration-300">
             <FaShoppingCart className="h-6 w-6" />
             {cartItemsCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-[#FF6B35] text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                 {Math.ceil(cartItemsCount/48)}
               </span>
             )}
           </Link>
         </div>
-
-        <div className="lg:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-orange-500 transition-colors duration-300">
-            <HiOutlineBars2 className="h-[24px] w-[24px]" />
-          </button>
-        </div>
       </div>
       <Drawer
-        anchor="right"
+        anchor="left"
         open={isOpen}
         onClose={toggleDrawer(false)}
         className="lg:hidden"
         PaperProps={{
           sx: {
-            backgroundColor: '#111',
-            color: '#f1f5f9'
+            backgroundColor: '#ffffff',
+            color: '#333333'
           }
         }}
       >

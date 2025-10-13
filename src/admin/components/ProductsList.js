@@ -266,7 +266,7 @@ const ProductsList = () => {
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Products</h2>
           <p className="text-gray-600 mt-1">
-            Manage your footwear products ({filteredProducts && filteredProducts.length} total)
+            Manage your candle products ({filteredProducts && filteredProducts.length} total)
           </p>
         </div>
         <div className="mt-4 sm:mt-0">

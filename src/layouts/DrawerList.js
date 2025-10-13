@@ -6,18 +6,18 @@ import Logo from "../component/common/Logo";
 const DrawerList = ({ activeNavItem, handleScroll }) => {
   const location = useLocation();
   return (
-    <div className="bg-black w-[18rem] h-screen">
-      <div className="flex justify-center items-center h-[73px] border-b border-gray-300">
+    <div className="bg-white w-[18rem] h-screen border-l border-gray-200">
+      <div className="flex justify-center items-center h-[73px] border-b border-gray-200">
         <Logo />
       </div>
 
-      <div className="flex flex-col items-center justify-between h-full py-4 bg-black">
+      <div className="flex flex-col items-center justify-between h-full py-4 bg-white">
         <ul className="flex flex-col  items-center justify-center space-y-[30px]">
           <li>
             <Link
               to="/"
               className={`${
-                location.pathname !== "/" && "hover:underline hover:text-orange-500"
+                location.pathname !== "/" && "hover:underline hover:text-[#FF8C42]"
               } flex items-center cursor-pointer`}
             >
               <span
@@ -27,8 +27,8 @@ const DrawerList = ({ activeNavItem, handleScroll }) => {
                   fontSize: "18px",
                   color:
                     location.pathname === "/"
-                      ? "#FF6B35"
-                      : "#FFFFFF",
+                      ? "#FF8C42"
+                      : "#374151",
                 }}
               >
                 Home
@@ -39,7 +39,7 @@ const DrawerList = ({ activeNavItem, handleScroll }) => {
             <Link
               to="/all/collection"
               className={`${
-                location.pathname !== "/all/collection" && "hover:underline hover:text-orange-500"
+                location.pathname !== "/all/collection" && "hover:underline hover:text-[#FF8C42]"
               } flex items-center cursor-pointer`}
             >
               <span
@@ -49,8 +49,8 @@ const DrawerList = ({ activeNavItem, handleScroll }) => {
                   fontSize: "18px",
                   color:
                     location.pathname === "/all/collection"
-                      ? "#FF6B35"
-                      : "#FFFFFF",
+                      ? "#FF8C42"
+                      : "#374151",
                 }}
               >
                 Product

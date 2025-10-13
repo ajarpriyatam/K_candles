@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import ProductCard from "../common/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,17 +8,19 @@ const Recommendation = () => {
   const dispatch = useDispatch();
   const productAll = useSelector((state) => state.products.products)
   const scrollContainerRef = useRef(null);
+  const [selectedCategory, setSelectedCategory] = useState("NEW ARRIVALS");
+  
   const products = productAll ? productAll.filter(product => product.tokenId.startsWith('A')): [];
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -400, behavior: "smooth" }); // Adjusted scroll distance
+      scrollContainerRef.current.scrollBy({ left: -320, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 400, behavior: "smooth" }); // Adjusted scroll distance
+      scrollContainerRef.current.scrollBy({ left: 320, behavior: "smooth" });
     }
   };
 
@@ -27,48 +29,85 @@ const Recommendation = () => {
   }, [dispatch]);
 
   return (
-    <section
-      id="collection"
-      className="mt-[50px] lg:mt-[53px] w-full flex flex-col items-start justify-center gap-[32px] relative bg-[#000000] py-8"
-    >
-      <div className="w-full flex justify-between items-center px-[5%]">
-        <h2 className="text-[22px] md:text-[24px] text-center lg:text-left text-[#ff6b00] font-semibold">
-          Recommended for you
-        </h2>
+    <section id="featured" className="w-full py-16 px-[5%] bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="mb-8">
+          <h2 className="text-[32px] md:text-[44px] text-gray-900 font-bold mb-2">
+            Featured Candles
+          </h2>
+          <p className="text-gray-600 text-base mb-6">
+            Our universally agreed, most loved products
+          </p>
+          
+          {/* Category Filters */}
+          <div className="flex items-center justify-between">
+            <div className="flex gap-1">
+              <button
+                onClick={() => setSelectedCategory("NEW ARRIVALS")}
+                className={`px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === "NEW ARRIVALS"
+                    ? "bg-gray-100 text-gray-900"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                NEW ARRIVALS
+              </button>
+              <button
+                onClick={() => setSelectedCategory("BEST SELLERS")}
+                className={`px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === "BEST SELLERS"
+                    ? "bg-gray-100 text-gray-900"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                BEST SELLERS
+              </button>
+            </div>
+            
+            <button className="px-4 py-2 text-sm font-medium text-gray-900 border border-gray-300 hover:bg-gray-50 transition-all duration-300">
+              VIEW ALL
+            </button>
+          </div>
+        </div>
 
-        <div className="hidden md:flex gap-4"> {/* Increased gap */}
+        {/* Product Carousel */}
+        <div className="relative">
+          {/* Navigation Arrows */}
           <button
             onClick={scrollLeft}
-            className="p-3 bg-[#1a1a1a] text-white rounded-full hover:bg-[#2a2a2a] transition-all duration-300 border border-[#ff6b00] hover:scale-110"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
             aria-label="Scroll left"
           >
-            <IoIosArrowBack className="text-[#ff6b00] text-xl" />
+            <IoIosArrowBack className="text-gray-700 text-lg" />
           </button>
+          
           <button
             onClick={scrollRight}
-            className="p-3 bg-[#1a1a1a] text-white rounded-full hover:bg-[#2a2a2a] transition-all duration-300 border border-[#ff6b00] hover:scale-110"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
             aria-label="Scroll right"
           >
-            <IoIosArrowForward className="text-[#ff6b00] text-xl" />
+            <IoIosArrowForward className="text-gray-700 text-lg" />
           </button>
+
+          {/* Product Grid */}
+          <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto hide-scrollbar px-12"
+          >
+            <div className="flex gap-6 pb-4">
+              {products.map((product, index) => (
+                <div
+                  key={index}
+                  className="flex-none w-[280px]"
+                >
+                  <ProductCard {...product} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-
-      <div
-        ref={scrollContainerRef}
-        className="w-full overflow-x-auto flex px-[5%] pb-6 hide-scrollbar snap-x snap-mandatory scrollbar-none"
-      >
-        <div className="flex gap-6 mx-auto"> {/* Added wrapper div with gap */}
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className="flex-none w-[280px] snap-start transform transition-transform duration-300 hover:scale-105"
-            >
-              <ProductCard {...product} />
-            </div>
-          ))}
-        </div>
-      </div> 
     </section>
   );
 };

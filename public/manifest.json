@@ -1,6 +1,7 @@
 {
-  "short_name": "Camp POS",
-  "name": "Camp POS",
+  "short_name": "KAVERA",
+  "name": "KAVERA - Luxury Candles & Home Fragrances",
+  "description": "Shop premium handcrafted candles, scented candles, and home fragrances",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#E06F2C",
-  "background_color": "#ffffff"
+  "theme_color": "#D4A574",
+  "background_color": "#1a1412"
 }

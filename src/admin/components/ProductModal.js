@@ -23,14 +23,14 @@ const ProductModal = ({ isOpen, onClose, product, mode = 'view' }) => {
   const [newSize, setNewSize] = useState('');
 
   const categories = [
-    { label: "Men's Running Shoes", value: "mens-running" },
-    { label: "Women's Running Shoes", value: "womens-running" },
-    { label: "Men's Casual Shoes", value: "mens-casual" },
-    { label: "Women's Casual Shoes", value: "womens-casual" },
-    { label: "Sports Shoes", value: "sports" },
-    { label: "Formal Shoes", value: "formal" },
-    { label: "Sandals", value: "sandals" },
-    { label: "Boots", value: "boots" }
+    { label: "Jar & Container Candles", value: "jar-candles" },
+    { label: "Pillar Candles", value: "pillar-candles" },
+    { label: "T-Light Candles", value: "tlight-candles" },
+    { label: "Aroma Gift Sets", value: "gift-sets" },
+    { label: "Home Decor", value: "home-decor" },
+    { label: "Scented Candles", value: "scented-candles" },
+    { label: "Decorative Candles", value: "decorative-candles" },
+    { label: "Seasonal Collection", value: "seasonal" }
   ];
 
   const handleInputChange = (field, value) => {

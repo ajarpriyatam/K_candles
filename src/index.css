@@ -12,14 +12,15 @@
 }
 
 :root {
-  --color-primary: #37AFE1;
-  --color-secondary: #4CC9FE;
-  --color-tertiary: #E50046;
+  --color-primary: #FF8C42;
+  --color-secondary: #FF6B35;
+  --color-tertiary: #266B37;
   --color-background: #ffffff;
-  --color-backgroundGray: #F3F3F3;
-  --color-text: #565656;
-  --color-black: #000000;
+  --color-backgroundGray: #FFF8F3;
+  --color-text: #333333;
+  --color-black: #1a1a1a;
   --color-white: #ffffff;
+  --color-gold: #FF8C42;
 }
 
 body {

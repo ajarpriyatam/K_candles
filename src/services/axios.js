@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.REACT_APP_API_URL || (window.location.hostname === 'localhost' ? "/api/v1" : "https://b-ls-solestyle.vercel.app/api/v1");
+const baseURL = process.env.REACT_APP_API_URL || (window.location.hostname === 'localhost' ? "/api/v1" : "https://kavera-api.vercel.app/api/v1");
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
