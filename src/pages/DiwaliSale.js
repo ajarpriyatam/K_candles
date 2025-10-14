@@ -69,7 +69,7 @@ const DiwaliSale = () => {
            ) : diwaliProducts && diwaliProducts.length > 0 ? (
              <div className="space-y-8">
                <div className="text-center">
-                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#000000] mb-4">
+                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#000000] mb-4">
                    🪔 Diwali Collection 🪔
                  </h2>
                  <p className="text-lg text-[#D4A574]">
