@@ -4,7 +4,7 @@ import MainSection from "../component/MainSection";
 import CandleCollections from "../component/collections/CandleCollections";
 import Recommendation from "../component/recommendation/Recommendations";
 import WhyChooseUs from "../component/WhyChooseUs";
-import Newsletter from "../component/Newsletter";
+// import Newsletter from "../component/Newsletter";
 
 const HomePage = () => {
   return (

@@ -44,9 +44,9 @@ const DiwaliSale = () => {
               <div className="bg-gradient-to-r from-[#D4A574] to-[#C08860] text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg">
                 Up to 50% OFF
               </div>
-              <div className="text-[#D4A574] text-lg font-medium">
+              {/* <div className="text-[#D4A574] text-lg font-medium">
                 Free shipping on orders above ₹999
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
