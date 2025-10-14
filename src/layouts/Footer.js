@@ -1,7 +1,8 @@
 import React from "react";
 import Logo from "../component/common/Logo";
 import SocialIcons from "../component/common/SocialIcons";
-import { FaFacebookF, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
+import {FaInstagram } from "react-icons/fa";
+// import { FaFacebookF, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -50,7 +51,7 @@ const Footer = () => {
                 to={"https://pinterest.com"}
                 icon={FaPinterest}
                 .
-                
+
                 className="hover:!text-[#D4A574]"
               /> */}
             </div>
