@@ -205,7 +205,7 @@ const ProductModal = ({ isOpen, onClose, product, mode = 'view' }) => {
               />
               <button
                 onClick={handleAddColor}
-                className="px-3 py-1 bg-primary text-white rounded hover:bg-primary/90"
+                className="px-3 py-1 bg-primary text-beige rounded hover:bg-primary/90"
               >
                 Add Color
               </button>
@@ -249,7 +249,7 @@ const ProductModal = ({ isOpen, onClose, product, mode = 'view' }) => {
               />
               <button
                 onClick={handleAddSize}
-                className="px-3 py-1 bg-primary text-white rounded hover:bg-primary/90"
+                className="px-3 py-1 bg-primary text-beige rounded hover:bg-primary/90"
               >
                 Add Size
               </button>

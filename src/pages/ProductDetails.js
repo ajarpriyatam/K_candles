@@ -91,8 +91,8 @@ const ProductDetails = () => {
       <button
         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 border-2 ${
           selectedScent === scent
-            ? "bg-[#FF8C42] text-white border-[#FF8C42] shadow-lg shadow-[#FF8C42]/30"
-            : "bg-white text-gray-700 border-gray-300 hover:border-[#FF8C42]/50 hover:bg-gray-50"
+            ? "bg-[#D4A574] text-beige border-[#D4A574] shadow-lg shadow-[#D4A574]/30"
+            : "bg-beige text-gray-700 border-gray-300 hover:border-[#D4A574]/50 hover:bg-gray-50"
         }`}
         onClick={() => handleScentSelection(scent)}
       >
@@ -105,10 +105,10 @@ const ProductDetails = () => {
   if (loading) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-white mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
-              <div className="text-[#FF8C42] text-xl">Loading product details...</div>
+              <div className="text-[#D4A574] text-xl">Loading product details...</div>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ const ProductDetails = () => {
   if (error) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-white mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
               <div className="text-red-500 text-xl">Error: {error}</div>
@@ -135,7 +135,7 @@ const ProductDetails = () => {
   if (!product || Object.keys(product).length === 0) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-white mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
               <div className="text-gray-600 text-xl">Product not found</div>
@@ -148,7 +148,7 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <div className="w-full py-16 bg-white mt-[67px]">
+      <div className="w-full py-16 bg-beige mt-[67px]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
           <div className="xl:w-1/2">
@@ -220,7 +220,7 @@ const ProductDetails = () => {
                 {product.name}
               </h1>
               <div className="flex items-baseline gap-2 mb-2">
-                <p className="text-[#FF8C42] text-2xl sm:text-3xl font-bold">
+                <p className="text-[#D4A574] text-2xl sm:text-3xl font-bold">
                   Rs. {product.price.toFixed(2)}
                 </p>
                 <p className="text-sm text-gray-600">
@@ -253,7 +253,7 @@ const ProductDetails = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={decreaseQuantity}
-                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-[#FF8C42] hover:bg-[#FF8C42]/10 transition-all duration-300"
+                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-[#D4A574] hover:bg-[#D4A574]/10 transition-all duration-300"
                   disabled={quantity <= 1}
                 >
                   <svg
@@ -270,14 +270,14 @@ const ProductDetails = () => {
                   type="number"
                   value={quantity}
                   onChange={handleQuantityChange}
-                  className="w-16 h-10 text-center border-2 border-gray-300 rounded-lg focus:border-[#FF8C42] focus:outline-none"
+                  className="w-16 h-10 text-center border-2 border-gray-300 rounded-lg focus:border-[#D4A574] focus:outline-none"
                   min="1"
                   max="99"
                 />
                 
                 <button
                   onClick={increaseQuantity}
-                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-[#FF8C42] hover:bg-[#FF8C42]/10 transition-all duration-300"
+                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-[#D4A574] hover:bg-[#D4A574]/10 transition-all duration-300"
                 >
                   <svg
                     className="w-5 h-5 text-gray-600"
@@ -299,13 +299,13 @@ const ProductDetails = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8 mt-14">
               <button 
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 border-2 border-[#FF8C42] text-[#FF8C42] hover:bg-[#FF8C42] hover:text-white transition-all duration-300 rounded-lg font-medium"
+                className="flex-1 py-4 px-6 border-2 border-[#D4A574] text-[#D4A574] hover:bg-[#D4A574] hover:text-beige transition-all duration-300 rounded-lg font-medium"
               >
                 ADD TO CART
               </button>
               <button 
                 onClick={buyNow}
-                className="flex-1 py-4 px-6 bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white hover:opacity-90 transition-all duration-300 rounded-lg font-medium"
+                className="flex-1 py-4 px-6 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige hover:opacity-90 transition-all duration-300 rounded-lg font-medium"
               >
                 COMING SOON...
               </button>
@@ -314,10 +314,10 @@ const ProductDetails = () => {
             {/* Security Badge */}
             <div className="flex justify-center sm:justify-start mb-8">
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-[#FF8C42]/20 rounded-full flex items-center justify-center mb-2">
+                <div className="w-12 h-12 bg-[#D4A574]/20 rounded-full flex items-center justify-center mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-[#FF8C42]"
+                    className="h-6 w-6 text-[#D4A574]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

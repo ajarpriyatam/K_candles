@@ -151,7 +151,7 @@ const Offers = () => {
   };
 
   return (
-    <div className="w-full h-full bg-white rounded-[1rem] py-[2rem] pl-[2rem]">
+    <div className="w-full h-full bg-beige rounded-[1rem] py-[2rem] pl-[2rem]">
       <div className="flex flex-col gap-5 w-full h-full overflow-y-auto custom-scrollbar pr-[2rem]">
         <h5 className="mb-5">Create Offer</h5>
 

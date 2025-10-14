@@ -44,7 +44,7 @@ const Layout = () => {
             <img 
               src={DrawerIcon} 
               alt="Drawer icon" 
-              className="filter invert"  // Makes the icon white
+              className="filter invert"  // Makes the icon beige
             />
           </button>
         </div>

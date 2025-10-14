@@ -23,7 +23,7 @@ const CButton = ({
         height: height,
         borderRadius: "64px",
         border: border,
-        color: textColor ? `${textColor}` : "white",
+        color: textColor ? `${textColor}` : "#F8F4E8",
       }}
       onClick={handleClick}
     >

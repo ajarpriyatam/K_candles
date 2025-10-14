@@ -52,7 +52,7 @@ const SelectField = (props) => {
         {props.label}
       </div>
       <div
-        className="relative inline-flex w-full bg-white rounded-lg border border-[#CCCCCC] focus:outline-none focus:border-primary focus:ring-primary h-14"
+        className="relative inline-flex w-full bg-beige rounded-lg border border-[#CCCCCC] focus:outline-none focus:border-primary focus:ring-primary h-14"
         style={{
           border: isOpen
             ? "1px solid var(--color-primary)"
@@ -81,14 +81,14 @@ const SelectField = (props) => {
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute z-50 left-0 mt-1 w-800px origin-top-right rounded-md bg-white max-h-60 overflow-y-auto custom-scrollbar shadow-lg border border-gray-200"
+          className="absolute z-50 left-0 mt-1 w-800px origin-top-right rounded-md bg-beige max-h-60 overflow-y-auto custom-scrollbar shadow-lg border border-gray-200"
         >
           {props.items.map((item) => (
             <button
               type="button"
               onClick={onOptionClicked(item)}
               key={item.value}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white focus:outline-none"
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-beige focus:outline-none"
             >
               {item.label}
             </button>

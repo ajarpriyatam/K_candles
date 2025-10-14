@@ -40,13 +40,13 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF8F3] to-white py-8 mt-[100px]">
+      <div className="min-h-screen bg-gradient-to-b from-beige via-[#FFF8F3] to-beige py-8 mt-[100px]">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8 mt-8">
             <div className="flex items-center gap-3 mb-2">
-              <FaShoppingCart className="text-[#FF8C42] text-4xl" />
-              <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] bg-clip-text text-transparent">
+              <FaShoppingCart className="text-[#D4A574] text-4xl" />
+              <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#D4A574] to-[#C08860] bg-clip-text text-transparent">
                 Shopping Cart
               </h1>
             </div>
@@ -57,13 +57,13 @@ const CartPage = () => {
 
           {/* Minimum Order Notice */}
           {cart.length > 0 && (
-            <div className="mb-6 bg-gradient-to-r from-[#FF8C42]/10 to-[#FF6B35]/10 border-2 border-[#FF8C42]/30 rounded-xl p-4">
+            <div className="mb-6 bg-gradient-to-r from-[#D4A574]/10 to-[#C08860]/10 border-2 border-[#D4A574]/30 rounded-xl p-4">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#FF8C42]/20 rounded-full flex items-center justify-center">
-                  <span className="text-[#FF8C42] font-bold text-sm">!</span>
+                <div className="w-8 h-8 bg-[#D4A574]/20 rounded-full flex items-center justify-center">
+                  <span className="text-[#D4A574] font-bold text-sm">!</span>
                 </div>
                 <div>
-                  <h3 className="text-[#FF8C42] font-semibold text-sm">Minimum Order Policy</h3>
+                  <h3 className="text-[#D4A574] font-semibold text-sm">Minimum Order Policy</h3>
                   <p className="text-gray-700 text-xs">
                     Each product requires a minimum order of {MINIMUM_ORDER_QUANTITY} units. This ensures wholesale pricing and efficient fulfillment.
                   </p>
@@ -73,10 +73,10 @@ const CartPage = () => {
           )}
 
           {cart.length === 0 ? (
-            <div className="bg-white rounded-2xl p-12 sm:p-16 shadow-2xl text-center border-2 border-gray-200">
+            <div className="bg-beige rounded-2xl p-12 sm:p-16 shadow-2xl text-center border-2 border-gray-200">
                 <div className="max-w-md mx-auto">
-                <div className="mb-6 inline-block p-6 bg-[#FF8C42]/10 rounded-full">
-                  <FaShoppingCart className="text-6xl text-[#FF8C42]" />
+                <div className="mb-6 inline-block p-6 bg-[#D4A574]/10 rounded-full">
+                  <FaShoppingCart className="text-6xl text-[#D4A574]" />
                 </div>
                 <h2 className="text-3xl font-bold mb-4 text-gray-800">Your Cart is Empty</h2>
                 <p className="text-gray-600 mb-8 text-lg">
@@ -84,7 +84,7 @@ const CartPage = () => {
                 </p>
                 <button 
                   onClick={() => navigate("/")}
-                  className="bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white py-4 px-8 rounded-xl hover:opacity-90 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-[#FF8C42]/50 transform hover:scale-105"
+                  className="bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige py-4 px-8 rounded-xl hover:opacity-90 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-[#D4A574]/50 transform hover:scale-105"
                 >
                   Start Shopping
                 </button>
@@ -97,12 +97,12 @@ const CartPage = () => {
                 {cart.map((item, index) => (
                   <div 
                     key={item.id} 
-                    className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-[#FF8C42]/50 transition-all duration-300 transform hover:scale-[1.02] relative"
+                    className="bg-beige rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-[#D4A574]/50 transition-all duration-300 transform hover:scale-[1.02] relative"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Token ID Badge */}
                     <div className="absolute top-4 left-4 z-10">
-                      <div className="bg-[#FF8C42] text-white font-bold text-xs px-3 py-1 rounded-br-lg rounded-tl-lg shadow-lg">
+                      <div className="bg-[#D4A574] text-beige font-bold text-xs px-3 py-1 rounded-br-lg rounded-tl-lg shadow-lg">
                         #{item.tokenId}
                       </div>
                     </div>
@@ -115,7 +115,7 @@ const CartPage = () => {
                             alt={item.name}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-beige/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       </div>
 
@@ -124,12 +124,12 @@ const CartPage = () => {
                         <div>
                             <div className="flex justify-between items-start mb-3">
                             <div>
-                              <h3 className="font-bold text-xl text-gray-800 mb-1 hover:text-[#FF8C42] transition-colors cursor-pointer">
+                              <h3 className="font-bold text-xl text-gray-800 mb-1 hover:text-[#D4A574] transition-colors cursor-pointer">
                                 {item.name}
                               </h3>
                             </div>
                             <div className="text-right">
-                              <p className="text-2xl font-bold bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] bg-clip-text text-transparent">
+                              <p className="text-2xl font-bold bg-gradient-to-r from-[#D4A574] to-[#C08860] bg-clip-text text-transparent">
                                 ₹{(item.price * item.quantity).toFixed(2)}
                               </p>
                               <p className="text-gray-600 text-sm">₹{item.price.toFixed(2)} each</p>
@@ -164,22 +164,22 @@ const CartPage = () => {
                                 onClick={() => updateQuantity(item.id, item.quantity - 48)}
                                 className={`px-4 py-2 text-gray-700 transition-colors duration-200 ${
                                   item.quantity > MINIMUM_ORDER_QUANTITY 
-                                    ? "hover:bg-[#FF8C42] hover:text-white" 
+                                    ? "hover:bg-[#D4A574] hover:text-beige" 
                                     : "cursor-not-allowed opacity-50"
                                 }`}
                                 disabled={item.quantity <= MINIMUM_ORDER_QUANTITY}
                               >
                                 <FaMinus className="text-sm" />
                               </button>
-                              <span className="px-6 py-2 text-gray-800 font-bold bg-white">{item.quantity}</span>
+                              <span className="px-6 py-2 text-gray-800 font-bold bg-beige">{item.quantity}</span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 48)}
-                                className="px-4 py-2 hover:bg-[#FF8C42] hover:text-white text-gray-700 transition-colors duration-200"
+                                className="px-4 py-2 hover:bg-[#D4A574] hover:text-beige text-gray-700 transition-colors duration-200"
                               >
                                 <FaPlus className="text-sm" />
                               </button>
                             </div>
-                            <span className="text-xs text-[#FF8C42] bg-[#FF8C42]/10 px-2 py-1 rounded-full font-medium">
+                            <span className="text-xs text-[#D4A574] bg-[#D4A574]/10 px-2 py-1 rounded-full font-medium">
                               Min: {MINIMUM_ORDER_QUANTITY}
                             </span>
                           </div>
@@ -199,7 +199,7 @@ const CartPage = () => {
                 {/* Continue Shopping Button */}
                 <button
                   onClick={() => navigate("/")}
-                  className="w-full bg-white hover:bg-gray-50 text-gray-800 py-4 rounded-xl transition-all duration-300 font-semibold border-2 border-gray-200 hover:border-[#FF8C42]"
+                  className="w-full bg-beige hover:bg-gray-50 text-gray-800 py-4 rounded-xl transition-all duration-300 font-semibold border-2 border-gray-200 hover:border-[#D4A574]"
                 >
                   ← Continue Shopping
                 </button>
@@ -207,8 +207,8 @@ const CartPage = () => {
 
               {/* Order Summary */}
               <div className="lg:w-1/3">
-                <div className="bg-white rounded-2xl shadow-2xl p-6 sticky top-24 border-2 border-gray-200">
-                  <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] bg-clip-text text-transparent">
+                <div className="bg-beige rounded-2xl shadow-2xl p-6 sticky top-24 border-2 border-gray-200">
+                  <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-[#D4A574] to-[#C08860] bg-clip-text text-transparent">
                     Order Summary
                   </h2>
 
@@ -216,14 +216,14 @@ const CartPage = () => {
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between text-gray-600">
                       <span className="flex items-center gap-2">
-                        <MdLocalOffer className="text-[#FF8C42]" />
+                        <MdLocalOffer className="text-[#D4A574]" />
                         Subtotal
                       </span>
                       <span className="font-semibold text-gray-800">₹{subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-gray-600">
                       <span className="flex items-center gap-2">
-                        <FaShippingFast className="text-[#FF8C42]" />
+                        <FaShippingFast className="text-[#D4A574]" />
                         Packaging
                       </span>
                       <span className="font-semibold text-gray-800">₹{Packaging.toFixed(2)}</span>
@@ -236,7 +236,7 @@ const CartPage = () => {
                     <div className="border-t-2 border-gray-200 pt-4">
                       <div className="flex justify-between items-center">
                         <span className="text-xl font-bold text-gray-800">Total</span>
-                        <span className="text-3xl font-bold bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] bg-clip-text text-transparent">
+                        <span className="text-3xl font-bold bg-gradient-to-r from-[#D4A574] to-[#C08860] bg-clip-text text-transparent">
                           ₹{total.toFixed(2)}
                         </span>
                       </div>
@@ -244,7 +244,7 @@ const CartPage = () => {
                   </div>
 
                   {/* Checkout Button */}
-                  <button className="w-full bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white rounded-xl py-4 font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[#FF8C42]/50 transform hover:scale-105 mb-4">
+                  <button className="w-full bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige rounded-xl py-4 font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[#D4A574]/50 transform hover:scale-105 mb-4">
                     Coming Soon...
                   </button>
                 </div>

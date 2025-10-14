@@ -13,28 +13,28 @@ const WhyChooseUs = () => {
       icon: FaStar,
       title: "Wide Range",
       description: "Explore a variety of candle styles, sizes, and scents for any occasion. We have something special for everyone.",
-      color: "#FF8C42"
+      color: "#D4A574"
     },
     {
       icon: FaShieldAlt,
       title: "Quality Guarantee",
       description: "Our candles are carefully handcrafted by skilled artisans, reflecting meticulous attention to detail and quality.",
-      color: "#FF6B35"
+      color: "#C08860"
     },
     {
       icon: FaHeadset,
       title: "Customer Support",
       description: "We're here for you anytime, day or night. Your satisfaction is our priority.",
-      color: "#FF8C42"
+      color: "#D4A574"
     }
   ];
 
   return (
-    <section className="w-full py-16 bg-white">
+    <section className="w-full py-16 bg-beige">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[44px] text-[#FF8C42] font-bold mb-4">
+          <h2 className="text-[32px] md:text-[44px] text-[#D4A574] font-bold mb-4">
             Why Choose Us?
           </h2>
           <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
             return (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-[#FF8C42]/50 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF8C42]/20"
+                className="group relative bg-beige rounded-2xl p-8 border-2 border-gray-200 hover:border-[#D4A574]/50 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-[#D4A574]/20"
               >
                 {/* Background Glow */}
                 <div 
@@ -89,22 +89,22 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 bg-gradient-to-r from-[#FF8C42]/10 via-[#FF6B35]/10 to-[#FF8C42]/10 rounded-2xl p-8 border-2 border-[#FF8C42]/30">
+        <div className="mt-16 bg-gradient-to-r from-[#D4A574]/10 via-[#C08860]/10 to-[#D4A574]/10 rounded-2xl p-8 border-2 border-[#D4A574]/30">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-[#FF8C42] mb-2">10k+</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#D4A574] mb-2">10k+</p>
               <p className="text-gray-600 text-sm md:text-base">Happy Customers</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-[#FF8C42] mb-2">500+</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#D4A574] mb-2">500+</p>
               <p className="text-gray-600 text-sm md:text-base">Products</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-[#FF8C42] mb-2">50+</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#D4A574] mb-2">50+</p>
               <p className="text-gray-600 text-sm md:text-base">Unique Fragrances</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-[#FF8C42] mb-2">100%</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#D4A574] mb-2">100%</p>
               <p className="text-gray-600 text-sm md:text-base">Satisfaction</p>
             </div>
           </div>

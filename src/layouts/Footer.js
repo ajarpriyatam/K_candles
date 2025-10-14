@@ -20,13 +20,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-gradient-to-br from-gray-100 via-white to-gray-100 py-12 px-5 border-t-2 border-gray-200">
+    <footer className="w-full bg-gradient-to-br from-beige via-[#F8F4E8] to-beige py-12 px-5 border-t-2 border-gray-200">
       <div className="container max-w-7xl mx-auto px-6">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="flex flex-col items-start gap-6">
-            <Logo />
+            <Logo size="small" />
             <p className="max-w-[280px] text-left text-gray-600 text-sm leading-relaxed">
               Luxury for every home. Stay one step ahead in the world of Aroma & Candles.
             </p>
@@ -34,29 +34,29 @@ const Footer = () => {
               <SocialIcons
                 to={"https://facebook.com"}
                 icon={FaFacebookF}
-                className="hover:!text-[#FF8C42]"
+                className="hover:!text-[#D4A574]"
               />
               <SocialIcons
                 to={"https://instagram.com"}
                 icon={FaInstagram}
-                className="hover:!text-[#FF8C42]"
+                className="hover:!text-[#D4A574]"
               />
               <SocialIcons
                 to={"https://youtube.com"}
                 icon={FaYoutube}
-                className="hover:!text-[#FF8C42]"
+                className="hover:!text-[#D4A574]"
               />
               <SocialIcons
                 to={"https://pinterest.com"}
                 icon={FaPinterest}
-                className="hover:!text-[#FF8C42]"
+                className="hover:!text-[#D4A574]"
               />
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#FF8C42] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold">
               Quick Links
             </h3>
             <ul className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={item.link}
-                    className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                    className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -75,7 +75,7 @@ const Footer = () => {
 
           {/* Shop Links */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#FF8C42] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold">
               Shop
             </h3>
             <ul className="flex flex-col gap-3">
@@ -83,7 +83,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={item.link}
-                    className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                    className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -94,14 +94,14 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#FF8C42] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold">
               Get In Touch
             </h3>
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
                   to="tel:+91-1234567890"
-                  className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors"
+                  className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
                 >
                   P: +91-1234567890
                 </Link>
@@ -109,7 +109,7 @@ const Footer = () => {
               <li>
                 <Link
                   to='mailto:contact@kavera.co.in'
-                  className="text-gray-600 text-[14px] hover:text-[#FF8C42] transition-colors break-all"
+                  className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors break-all"
                 >
                   E: contact@kavera.co.in
                 </Link>
@@ -131,13 +131,13 @@ const Footer = () => {
               © 2025 KAVERA. All rights reserved.
             </p>
             <div className="flex gap-6 text-[12px]">
-              <Link to="/privacy" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+              <Link to="/privacy" className="text-gray-500 hover:text-[#D4A574] transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+              <Link to="/terms" className="text-gray-500 hover:text-[#D4A574] transition-colors">
                 Terms & Conditions
               </Link>
-              <Link to="/refund" className="text-gray-500 hover:text-[#FF8C42] transition-colors">
+              <Link to="/refund" className="text-gray-500 hover:text-[#D4A574] transition-colors">
                 Refund Policy
               </Link>
             </div>

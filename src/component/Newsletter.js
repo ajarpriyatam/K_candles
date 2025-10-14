@@ -32,25 +32,25 @@ const Newsletter = () => {
   return (
     <section
       id="newsletter"
-      className="w-full py-16 bg-white relative overflow-hidden"
+      className="w-full py-16 bg-beige relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white rounded-3xl p-8 md:p-12 border-2 border-[#FF8C42]/30 shadow-2xl">
+        <div className="bg-beige rounded-3xl p-8 md:p-12 border-2 border-[#D4A574]/30 shadow-2xl">
           {/* Icon */}
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <GiCandleFlame className="w-16 h-16 text-[#FF8C42] animate-pulse" />
-              <div className="absolute inset-0 bg-[#FF8C42]/20 blur-2xl rounded-full" />
+              <GiCandleFlame className="w-16 h-16 text-[#D4A574] animate-pulse" />
+              <div className="absolute inset-0 bg-[#D4A574]/20 blur-2xl rounded-full" />
             </div>
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#FF8C42] mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#D4A574] mb-4">
             Enjoy Exclusive Discounts
           </h2>
           
           <p className="text-center text-gray-700 text-base md:text-lg mb-8 max-w-2xl mx-auto">
-            Enjoy <span className="text-[#FF6B35] font-bold">10% off</span> on your first purchase and be the first to know about offers, new releases, and latest stories.
+            Enjoy <span className="text-[#C08860] font-bold">10% off</span> on your first purchase and be the first to know about offers, new releases, and latest stories.
           </p>
 
           {/* Subscribe Form */}
@@ -60,13 +60,13 @@ const Newsletter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address"
-              className="flex-1 px-6 py-4 rounded-full bg-gray-50 border-2 border-gray-200 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#FF8C42] transition-all duration-300"
+              className="flex-1 px-6 py-4 rounded-full bg-gray-50 border-2 border-gray-200 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#D4A574] transition-all duration-300"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="px-8 py-4 bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-[#FF8C42]/50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige font-semibold rounded-full hover:shadow-lg hover:shadow-[#D4A574]/50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed beigespace-nowrap"
             >
               {isLoading ? "Subscribing..." : "Subscribe"}
             </button>
@@ -81,17 +81,17 @@ const Newsletter = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             <div className="text-center">
               <div className="text-3xl mb-2">🎁</div>
-              <p className="text-[#FF8C42] font-semibold text-sm">Exclusive Offers</p>
+              <p className="text-[#D4A574] font-semibold text-sm">Exclusive Offers</p>
               <p className="text-gray-600 text-xs">Special deals for subscribers</p>
             </div>
             <div className="text-center">
               <div className="text-3xl mb-2">🕯️</div>
-              <p className="text-[#FF8C42] font-semibold text-sm">New Releases</p>
+              <p className="text-[#D4A574] font-semibold text-sm">New Releases</p>
               <p className="text-gray-600 text-xs">Be first to know</p>
             </div>
             <div className="text-center">
               <div className="text-3xl mb-2">✨</div>
-              <p className="text-[#FF8C42] font-semibold text-sm">Expert Tips</p>
+              <p className="text-[#D4A574] font-semibold text-sm">Expert Tips</p>
               <p className="text-gray-600 text-xs">Candle care & styling</p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { CgSpinner } from "react-icons/cg";
 const Button = (props) => {
   return (
     <button
-      className={`border-2 border-primary rounded-[0.5rem] disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-white disabled:text-primary bg-primary text-white text-[14px] flex justify-center items-center gap-2`}
+      className={`border-2 border-primary rounded-[0.5rem] disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-beige disabled:text-primary bg-primary text-beige text-[14px] flex justify-center items-center gap-2`}
       onClick={props.onClick}
       style={{
         padding: "7px 20px",

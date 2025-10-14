@@ -113,7 +113,7 @@ const ProductsList = () => {
   };
 
   const ProductCard = ({ product, index }) => (
-    <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+    <div className="bg-beige rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
       <div className="flex items-start space-x-4">
         <div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
           <img
@@ -183,7 +183,7 @@ const ProductsList = () => {
 
   const ProductTableRow = ({ product, index }) => (
     <tr className="hover:bg-gray-50">
-      <td className="px-6 py-4 whitespace-nowrap">
+      <td className="px-6 py-4 beigespace-nowrap">
         <div className="flex items-center">
           <div className="w-12 h-12 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
             <img
@@ -205,12 +205,12 @@ const ProductsList = () => {
           </div>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      <td className="px-6 py-4 beigespace-nowrap">
         <div className="text-sm font-bold text-primary">
           ₹{product.price}
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      <td className="px-6 py-4 beigespace-nowrap">
         <div className="flex space-x-1">
           {product.colors?.slice(0, 3).map((color, idx) => (
             <div
@@ -224,13 +224,13 @@ const ProductsList = () => {
           )}
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <td className="px-6 py-4 beigespace-nowrap text-sm text-gray-500">
         {product.sizes?.join(', ')}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <td className="px-6 py-4 beigespace-nowrap text-sm text-gray-500">
         {product.tokenId}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <td className="px-6 py-4 beigespace-nowrap text-right text-sm font-medium">
         <div className="flex space-x-2 justify-end">
           {/* <button
             onClick={() => handleView(product)}
@@ -271,7 +271,7 @@ const ProductsList = () => {
         </div>
         <div className="mt-4 sm:mt-0">
         <Link to="/admin/add/product">
-          <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+          <button className="bg-primary text-beige px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
             Add New Product
           </button>
           </Link>
@@ -279,7 +279,7 @@ const ProductsList = () => {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow-sm p-4">
+      <div className="bg-beige rounded-lg shadow-sm p-4">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-4">
           <div className="flex-1 max-w-md">
             <div className="relative">
@@ -328,13 +328,13 @@ const ProductsList = () => {
             <div className="flex border border-gray-300 rounded-lg overflow-hidden">
               <button
                 onClick={() => setViewMode('table')}
-                className={`px-3 py-2 ${viewMode === 'table' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+                className={`px-3 py-2 ${viewMode === 'table' ? 'bg-primary text-beige' : 'bg-beige text-gray-700 hover:bg-gray-50'}`}
               >
                 Table
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`px-3 py-2 ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+                className={`px-3 py-2 ${viewMode === 'grid' ? 'bg-primary text-beige' : 'bg-beige text-gray-700 hover:bg-gray-50'}`}
               >
                 Grid
               </button>
@@ -344,7 +344,7 @@ const ProductsList = () => {
       </div>
 
       {/* Products List */}
-      <div className="bg-white rounded-lg shadow-sm">
+      <div className="bg-beige rounded-lg shadow-sm">
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -375,7 +375,7 @@ const ProductsList = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-beige divide-y divide-gray-200">
                 {filteredProducts && filteredProducts.map((product, index) => (
                   <ProductTableRow key={index} product={product} index={index} />
                 ))}

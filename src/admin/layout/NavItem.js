@@ -5,7 +5,7 @@ export const NavItem = ({ SelectedIcon, name, isSelected, path, onClick }) => {
   return (
     <Link
       className={`flex h-[53.59px] items-center cursor-pointer w-full rounded-[0.5rem] py-[0.675rem] px-[1rem] ${
-        isSelected === name ? "bg-white" : "bg-transparent"
+        isSelected === name ? "bg-beige" : "bg-transparent"
       }`}
       to={`${path}`}
       style={{
@@ -17,7 +17,7 @@ export const NavItem = ({ SelectedIcon, name, isSelected, path, onClick }) => {
       <div>
         <div
           className={`flex justify-center items-center w-[32px] h-[32px] mr-3 p-[8px] ${
-            isSelected === name ? "bg-primary" : "bg-white"
+            isSelected === name ? "bg-primary" : "bg-beige"
           }`}
           style={{
             boxShadow: "0 0.3125rem 0.625rem 0 rgba(0, 0, 0, 0.12) !important",
@@ -25,7 +25,7 @@ export const NavItem = ({ SelectedIcon, name, isSelected, path, onClick }) => {
           }}
         >
           {isSelected === name ? (
-            <SelectedIcon size={18} color="white" />
+            <SelectedIcon size={18} color="beige" />
           ) : (
             <SelectedIcon size={18} />
           )}

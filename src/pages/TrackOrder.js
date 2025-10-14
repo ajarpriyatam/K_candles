@@ -18,7 +18,7 @@ const TrackOrder = () => {
       {
         id: 1,
         name: "Air Max 270",
-        color: "Black/White",
+        color: "Black/beige",
         size: "10.5",
         image: "/api/placeholder/100/80",
         price: 149.99,
@@ -97,7 +97,7 @@ const TrackOrder = () => {
             </p>
           </div>
 
-          <div className="bg-white shadow rounded-lg overflow-hidden">
+          <div className="bg-beige shadow rounded-lg overflow-hidden">
             <div className="px-4 py-5 sm:p-6">
               <form onSubmit={handleTrackOrder}>
                 <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
@@ -150,12 +150,12 @@ const TrackOrder = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-beige bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     {isLoading ? (
                       <span className="flex items-center">
                         <svg
-                          className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                          className="animate-spin -ml-1 mr-2 h-4 w-4 text-beige"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -193,7 +193,7 @@ const TrackOrder = () => {
           </div>
 
           {trackingResult && (
-            <div className="mt-8 bg-white shadow rounded-lg overflow-hidden">
+            <div className="mt-8 bg-beige shadow rounded-lg overflow-hidden">
               <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                   Order Details{" "}
@@ -225,7 +225,7 @@ const TrackOrder = () => {
                 <div className="relative">
                   <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                     <div
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-600"
+                      className="shadow-none flex flex-col text-center beigespace-nowrap text-beige justify-center bg-indigo-600"
                       style={{
                         width: `${
                           ((trackingResult.trackingSteps.findIndex(
@@ -245,7 +245,7 @@ const TrackOrder = () => {
                         <div
                           className={`w-6 h-6 rounded-full mb-1 flex items-center justify-center ${
                             step.date
-                              ? "bg-indigo-600 text-white"
+                              ? "bg-indigo-600 text-beige"
                               : "bg-gray-200 text-gray-400"
                           }`}
                         >
@@ -329,7 +329,7 @@ const TrackOrder = () => {
                   customer support team.
                 </p>
                 <div className="mt-3">
-                  <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-beige bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Contact Support
                   </button>
                 </div>

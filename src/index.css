@@ -12,15 +12,15 @@
 }
 
 :root {
-  --color-primary: #FF8C42;
-  --color-secondary: #FF6B35;
+  --color-primary: #D4A574;
+  --color-secondary: #C08860;
   --color-tertiary: #266B37;
-  --color-background: #ffffff;
-  --color-backgroundGray: #FFF8F3;
+  --color-background: #F8F4E8;
+  --color-backgroundGray: #F3EFE3;
   --color-text: #333333;
   --color-black: #1a1a1a;
-  --color-white: #ffffff;
-  --color-gold: #FF8C42;
+  --color-beige: #F8F4E8;
+  --color-gold: #D4A574;
 }
 
 body {
@@ -114,7 +114,7 @@ body {
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
-    color: var(--color-white);
+    color: var(--color-beige);
   }
 }
 
@@ -162,5 +162,5 @@ body {
 
 .pnf-btn:hover{
   background-color: black;
-  color:white;
+  color: #F8F4E8;
 }

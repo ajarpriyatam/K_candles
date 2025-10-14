@@ -29,7 +29,7 @@ const Recommendation = () => {
   }, [dispatch]);
 
   return (
-    <section id="featured" className="w-full py-16 px-[5%] bg-white relative overflow-hidden">
+    <section id="featured" className="w-full py-16 px-[5%] bg-beige relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8">
@@ -76,7 +76,7 @@ const Recommendation = () => {
           {/* Navigation Arrows */}
           <button
             onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-beige border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
             aria-label="Scroll left"
           >
             <IoIosArrowBack className="text-gray-700 text-lg" />
@@ -84,7 +84,7 @@ const Recommendation = () => {
           
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-beige border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-300 shadow-lg"
             aria-label="Scroll right"
           >
             <IoIosArrowForward className="text-gray-700 text-lg" />

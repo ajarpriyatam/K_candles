@@ -25,7 +25,7 @@ const ImageField = ({ label, onChange, img, imgUrl }) => {
               />
               <button
                 onClick={() => onChange({ target: { files: [] } })}
-                className="absolute top-2 right-2 bg-white rounded-md px-3 py-1 text-sm shadow-sm text-primary hover:bg-tertiary"
+                className="absolute top-2 right-2 bg-beige rounded-md px-3 py-1 text-sm shadow-sm text-primary hover:bg-tertiary"
               >
                 Change Image
               </button>

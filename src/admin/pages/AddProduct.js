@@ -230,7 +230,7 @@ const AddProduct = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Basic Information Card */}
-                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                    <div className="bg-beige/5 backdrop-blur-sm rounded-2xl p-4 border border-beige/10">
                         <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-2">
                             <div>
                                 <InputField
@@ -292,7 +292,7 @@ const AddProduct = () => {
                                         id="display"
                                         checked={formData.display}
                                         onChange={(e) => handleInputChange('display', e.target.checked)}
-                                        className="w-5 h-5 text-orange-500 bg-white border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
+                                        className="w-5 h-5 text-orange-500 bg-beige border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
                                     />
                                     <label htmlFor="display" className="text-sm text-black-300 cursor-pointer">
                                         Show this product on the website
@@ -311,10 +311,10 @@ const AddProduct = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="flex-1">
                                             <input
-                                                placeholder="Enter color (e.g., Black, White, Red)"
+                                                placeholder="Enter color (e.g., Black, beige, Red)"
                                                 value={formData.colors}
                                                 onChange={(e) => handleInputChange('colors', e.target.value)}
-                                                className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-white/90 text-gray-800 ${
+                                                className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 ${
                                                     validationErrors.colors 
                                                         ? "border-red-500 focus:border-red-500 focus:ring-red-500" 
                                                         : "border-gray-300 focus:border-orange-500 focus:ring-orange-500/20"
@@ -340,7 +340,7 @@ const AddProduct = () => {
                                                 placeholder="Enter size (e.g., Small, Medium, Large)"
                                                 value={formData.sizes}
                                                 onChange={(e) => handleInputChange('sizes', e.target.value)}
-                                                className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-white/90 text-gray-800 ${
+                                                className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 ${
                                                     validationErrors.sizes 
                                                         ? "border-red-500 focus:border-red-500 focus:ring-red-500" 
                                                         : "border-gray-300 focus:border-orange-500 focus:ring-orange-500/20"
@@ -391,7 +391,7 @@ const AddProduct = () => {
                                             validationErrors.productImageGallery 
                                                 ? "border-red-300 hover:border-red-400 text-red-400 hover:text-red-500" 
                                                 : "border-orange-300 hover:border-orange-400 text-orange-400 hover:text-orange-500"
-                                        } bg-white/90`}
+                                        } bg-beige/90`}
                                     >
                                         <FaUpload size={16} />
                                         Choose Multiple Product Images
@@ -438,11 +438,11 @@ const AddProduct = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3"
+                            className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-beige font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3"
                         >
                             {loading ? (
                                 <>
-                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                    <div className="w-5 h-5 border-2 border-beige border-t-transparent rounded-full animate-spin"></div>
                                     {isEditMode ? "Updating Product..." : "Adding Product..."}
                                 </>
                             ) : (
@@ -466,7 +466,7 @@ const AddProduct = () => {
                         opacity: 1
                     }}
                 >
-                    <div className="bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-4 max-w-sm">
+                    <div className="bg-beige rounded-lg shadow-2xl border-l-4 border-green-500 p-4 max-w-sm">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <div className="flex-shrink-0">
@@ -502,7 +502,7 @@ const AddProduct = () => {
                         opacity: 1
                     }}
                 >
-                    <div className="bg-white rounded-lg shadow-2xl border-l-4 border-red-500 p-4 max-w-sm">
+                    <div className="bg-beige rounded-lg shadow-2xl border-l-4 border-red-500 p-4 max-w-sm">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <div className="flex-shrink-0">

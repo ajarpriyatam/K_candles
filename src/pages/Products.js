@@ -22,14 +22,14 @@ const Products = () => {
 
   return (
     <Layout>
-      <div className="my-[120px] mx-auto w-[80%] gap-4 h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-white">
+      <div className="my-[120px] mx-auto w-[80%] gap-4 h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-beige">
 
         <div className="mt-[60px] col-span-full">
           {loading ? (
             <div className="flex justify-center items-center py-20">
               <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-4 border-[#FF8C42] border-t-transparent rounded-full animate-spin"></div>
-                <div className="text-[#FF8C42] text-lg">Loading candles...</div>
+                <div className="w-12 h-12 border-4 border-[#D4A574] border-t-transparent rounded-full animate-spin"></div>
+                <div className="text-[#D4A574] text-lg">Loading candles...</div>
               </div>
             </div>
           ) : error ? (
