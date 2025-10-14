@@ -6,12 +6,6 @@ const Logo = ({ className, img, size = "default" }) => {
     default: "text-3xl",
     large: "text-4xl"
   };
-  
-  const taglineClasses = {
-    small: "text-[10px]",
-    default: "text-xs",
-    large: "text-sm"
-  };
 
 return (
   <div className={`relative ${className || ''}`}>
