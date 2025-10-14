@@ -56,7 +56,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#D4A574] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold text-left">
               Quick Links
             </h3>
             <ul className="flex flex-col gap-3">
@@ -75,7 +75,7 @@ const Footer = () => {
 
           {/* Shop Links */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#D4A574] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold text-left">
               Shop
             </h3>
             <ul className="flex flex-col gap-3">
@@ -94,7 +94,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col gap-5">
-            <h3 className="text-lg text-[#D4A574] font-semibold">
+            <h3 className="text-lg text-[#D4A574] font-semibold text-left">
               Get In Touch
             </h3>
             <ul className="flex flex-col gap-3">

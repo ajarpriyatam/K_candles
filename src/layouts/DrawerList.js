@@ -46,24 +46,36 @@ const DrawerList = ({ activeNavItem, handleScroll }) => {
             </Link>
           </li>
           <li>
-            <a
-              href="#featured"
+            <Link
+              to="/new-arrivals"
               className="flex items-center cursor-pointer group"
             >
-              <span className="text-[18px] font-medium leading-[22.5px] transition-colors duration-300 text-gray-600 group-hover:text-[#D4A574]">
+              <span
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
+                  location.pathname === "/new-arrivals"
+                    ? "text-[#D4A574]"
+                    : "text-gray-600 group-hover:text-[#D4A574]"
+                }`}
+              >
                 New Arrivals
               </span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#newsletter"
+            <Link
+              to="/diwali-sale"
               className="flex items-center cursor-pointer group"
             >
-              <span className="text-[18px] font-medium leading-[22.5px] transition-colors duration-300 text-gray-600 group-hover:text-[#D4A574]">
-                Offers
+              <span
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
+                  location.pathname === "/diwali-sale"
+                    ? "text-[#D4A574]"
+                    : "text-gray-600 group-hover:text-[#D4A574]"
+                }`}
+              >
+                Sale
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
 

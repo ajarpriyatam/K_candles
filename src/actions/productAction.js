@@ -31,9 +31,10 @@ export const getProduct = () => async(dispatch)=>{
         name: "Lavender Dreams Jar Candle",
         price: 899,
         originalPrice: 1299,
-        category: "Jar Candles",
+        category: "jar",
         scent: "Lavender",
         candleType: "Soy Wax",
+        isNew: true,
         productImageGallery: [
           { url: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg" }
         ]
@@ -44,9 +45,10 @@ export const getProduct = () => async(dispatch)=>{
         name: "Vanilla Bliss Pillar Candle",
         price: 699,
         originalPrice: 999,
-        category: "Pillar Candles",
+        category: "pillar",
         scent: "Vanilla",
         candleType: "Paraffin Wax",
+        isNew: true,
         productImageGallery: [
           { url: "https://images.pexels.com/photos/243125/pexels-photo-243125.jpeg?_gl=1*19jd7qh*_ga*NzY5NzI4OTM1LjE3NTgxNzM0MDk.*_ga_8JE65Q40S6*czE3NjAzODYyMzIkbzUkZzEkdDE3NjAzODczOTUkajUxJGwwJGgw" }
         ]
@@ -57,7 +59,8 @@ export const getProduct = () => async(dispatch)=>{
         name: "Rose Garden T-Light Pack",
         price: 399,
         originalPrice: null,
-        category: "T-Light Candles",
+        isNew: true,
+        category: "tlight",
         scent: "Rose",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -69,10 +72,12 @@ export const getProduct = () => async(dispatch)=>{
         tokenId: "A004",
         name: "Sandalwood Serenity Jar",
         price: 1099,
-        originalPrice: null,
-        category: "Jar Candles",
+        originalPrice: 1499,
+        category: "jar",
         scent: "Sandalwood",
         candleType: "Beeswax",
+        isDiwali: true,
+        tag: "diwali",
         productImageGallery: [
           { url: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg" }
         ]
@@ -83,7 +88,9 @@ export const getProduct = () => async(dispatch)=>{
         name: "Ocean Breeze Gift Set",
         price: 1899,
         originalPrice: 2499,
-        category: "Gift Sets",
+        category: "giftsets",
+        isDiwali: true,
+        tag: "diwali",
         scent: "Ocean Breeze",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -95,10 +102,12 @@ export const getProduct = () => async(dispatch)=>{
         tokenId: "A006",
         name: "Cinnamon Spice Pillar",
         price: 799,
-        originalPrice: null,
-        category: "Pillar Candles",
+        originalPrice: 1199,
+        category: "pillar",
         scent: "Cinnamon",
         candleType: "Soy Wax",
+        isDiwali: true,
+        tag: "diwali",
         productImageGallery: [
           { url: "https://images.pexels.com/photos/321444/pexels-photo-321444.jpeg" }
         ]
@@ -109,7 +118,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Jasmine Night T-Lights",
         price: 449,
         originalPrice: 599,
-        category: "T-Light Candles",
+        category: "tlight",
         scent: "Jasmine",
         candleType: "Paraffin Wax",
         productImageGallery: [
@@ -122,7 +131,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Eucalyptus Mint Jar Candle",
         price: 949,
         originalPrice: null,
-        category: "Jar Candles",
+        category: "jar",
         scent: "Eucalyptus Mint",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -135,7 +144,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Luxury Candle Collection",
         price: 2499,
         originalPrice: 3499,
-        category: "Gift Sets",
+        category: "giftsets",
         scent: "Mixed",
         candleType: "Premium Wax Blend",
         productImageGallery: [
@@ -148,7 +157,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Amber & Wood Decorative Candle",
         price: 1299,
         originalPrice: null,
-        category: "Home Decor",
+        category: "homedecor",
         scent: "Amber Wood",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -161,7 +170,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Citrus Fresh Pillar",
         price: 699,
         originalPrice: 899,
-        category: "Pillar Candles",
+        category: "pillar",
         scent: "Citrus",
         candleType: "Beeswax",
         productImageGallery: [
@@ -174,7 +183,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Peony Blossom Jar",
         price: 999,
         originalPrice: null,
-        category: "Jar Candles",
+        category: "jar",
         scent: "Peony",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -187,7 +196,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Geometric Candle Holder Set",
         price: 1599,
         originalPrice: 1999,
-        category: "Home Decor",
+        category: "homedecor",
         scent: "Unscented",
         candleType: "Decorative",
         productImageGallery: [
@@ -200,7 +209,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Peppermint Joy T-Lights",
         price: 499,
         originalPrice: null,
-        category: "T-Light Candles",
+        category: "tlight",
         scent: "Peppermint",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -213,7 +222,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Cherry Blossom Gift Box",
         price: 2199,
         originalPrice: null,
-        category: "Gift Sets",
+        category: "giftsets",
         scent: "Cherry Blossom",
         candleType: "Premium Soy Wax",
         productImageGallery: [
@@ -226,7 +235,7 @@ export const getProduct = () => async(dispatch)=>{
         name: "Coffee & Cream Pillar",
         price: 849,
         originalPrice: 1099,
-        category: "Pillar Candles",
+        category: "pillar",
         scent: "Coffee",
         candleType: "Soy Wax",
         productImageGallery: [
@@ -289,9 +298,10 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Lavender Dreams Jar Candle",
         price: 899,
         originalPrice: 1299,
-        category: "Jar Candles",
+        category: "jar",
         scent: "Lavender",
         candleType: "Soy Wax",
+        isNew: true,
         description: "Transform your space into a tranquil sanctuary with our Lavender Dreams Jar Candle. Hand-poured with premium soy wax and infused with pure lavender essential oils, this candle creates a calming atmosphere perfect for relaxation and meditation. The elegant glass jar adds a touch of sophistication to any room. Burn time: 40-45 hours. Made with eco-friendly, sustainable materials.",
         scents: ["Vanilla + Oud", "Rose + Oud", "Dark Amber + Oud"],
         productImageGallery: [
@@ -307,9 +317,10 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Vanilla Bliss Pillar Candle",
         price: 699,
         originalPrice: 999,
-        category: "Pillar Candles",
+        category: "pillar",
         scent: "Vanilla",
         candleType: "Paraffin Wax",
+        isNew: true,
         description: "Experience pure bliss with our Vanilla Bliss Pillar Candle. This classic pillar design features a rich, warm vanilla fragrance that fills your home with sweetness and comfort. Perfect for centerpieces, dinner tables, or creating a cozy ambiance. Premium paraffin wax ensures a clean, even burn. Dimensions: 3\" x 6\". Burn time: 50-60 hours.",
         scents: ["Vanilla + Oud", "Rose + Oud", "Dark Amber + Oud"],
         productImageGallery: [
@@ -325,9 +336,10 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Rose Garden T-Light Pack",
         price: 399,
         originalPrice: null,
-        category: "T-Light Candles",
+        category: "tlight",
         scent: "Rose",
         candleType: "Soy Wax",
+        isNew: true,
         description: "Bring the romance of a blooming rose garden into your home with our T-Light Pack. Each pack contains 12 premium soy wax tealights infused with natural rose essence. Perfect for creating a romantic atmosphere, spa settings, or special occasions. Burns cleanly without soot. Each tealight burns for 4-5 hours. Eco-friendly and biodegradable.",
         scents: ["Vanilla + Oud", "Rose + Oud", "Dark Amber + Oud"],
         productImageGallery: [
@@ -343,7 +355,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Sandalwood Serenity Jar",
         price: 1099,
         originalPrice: null,
-        category: "Jar Candles",
+        category: "jar",
         scent: "Sandalwood",
         candleType: "Beeswax",
         description: "Discover inner peace with our Sandalwood Serenity Jar Candle. Made from 100% pure beeswax and infused with authentic sandalwood essential oil, this candle purifies the air while creating a meditative atmosphere. Beeswax naturally releases negative ions that help cleanse the air. Features a wooden wick for a gentle crackling sound. Burn time: 55-60 hours.",
@@ -361,7 +373,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Ocean Breeze Gift Set",
         price: 1899,
         originalPrice: 2499,
-        category: "Gift Sets",
+        category: "giftsets",
         scent: "Ocean Breeze",
         candleType: "Soy Wax",
         description: "Bring the refreshing essence of the ocean into any home with our Ocean Breeze Gift Set. This luxurious collection includes 3 jar candles in varying sizes, all featuring our signature ocean breeze fragrance. Beautifully packaged in an elegant gift box, making it perfect for housewarmings, birthdays, or special occasions. Each candle is hand-poured with premium soy wax. Combined burn time: 100+ hours.",
@@ -379,7 +391,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         name: "Cinnamon Spice Pillar",
         price: 799,
         originalPrice: null,
-        category: "Pillar Candles",
+        category: "pillar",
         scent: "Cinnamon",
         candleType: "Soy Wax",
         description: "Warm your home with the cozy aroma of our Cinnamon Spice Pillar Candle. Perfect for fall and winter seasons, this candle fills your space with the comforting scent of freshly ground cinnamon and subtle spice notes. Hand-poured using premium soy wax for a clean burn. Ideal for creating a welcoming atmosphere. Burn time: 45-50 hours.",

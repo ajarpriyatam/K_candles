@@ -109,34 +109,36 @@ const Navbar = () => {
                 Collections
               </span>
             </Link>
-            <a
+            <Link
               className="flex items-center cursor-pointer group"
-              href='#featured'
+              to='/new-arrivals'
             >
               <span
-                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
-                  isScrolled
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${activeNavItem === '/new-arrivals'
+                  ? "text-[#D4A574]"
+                  : isScrolled
                     ? "text-gray-700 group-hover:text-[#D4A574]"
                     : "text-gray-600 group-hover:text-[#D4A574]"
                   }`}
               >
                 New Arrivals
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               className="flex items-center cursor-pointer group"
-              href='#newsletter'
+              to='/diwali-sale'
             >
               <span
-                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${
-                  isScrolled
+                className={`text-[18px] font-medium leading-[22.5px] transition-colors duration-300 ${activeNavItem === '/diwali-sale'
+                  ? "text-[#D4A574]"
+                  : isScrolled
                     ? "text-gray-700 group-hover:text-[#D4A574]"
                     : "text-gray-600 group-hover:text-[#D4A574]"
                   }`}
               >
-                Offers
+                Sale
               </span>
-            </a>
+            </Link>
           </ul>
         </div>
 
@@ -146,7 +148,7 @@ const Navbar = () => {
             <FaShoppingCart className="h-6 w-6" />
             {cartItemsCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-[#C08860] text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {Math.ceil(cartItemsCount/48)}
+                {cartItemsCount}
               </span>
             )}
           </Link>

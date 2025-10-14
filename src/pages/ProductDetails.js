@@ -33,22 +33,22 @@ const ProductDetails = () => {
 
 
   const handleAddToCart = () => {
-    if (!product?.scents) {
-      toast.error("Product scents not available");
-      return;
-    }
-
+    // Create base cart item with essential information
     const cartItem = {
       id: product._id, // Single ID for the entire product
       productId: product._id,
       name: product.name,
-      scents: product.scents, // All available scents
-      selectedScent: selectedScent, // Selected scent
       price: product.price,
       quantity: quantity, // Selected quantity
       image: product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex],
       tokenId: product.tokenId,
     };
+
+    // Add scent information only if scents are available
+    if (product?.scents && product.scents.length > 0) {
+      cartItem.scents = product.scents; // All available scents
+      cartItem.selectedScent = selectedScent; // Selected scent
+    }
 
     addToCart(cartItem);
     toast.success("Added to cart successfully!");
@@ -105,7 +105,7 @@ const ProductDetails = () => {
   if (loading) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-beige mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[25px] md:mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
               <div className="text-[#D4A574] text-xl">Loading product details...</div>
@@ -120,7 +120,7 @@ const ProductDetails = () => {
   if (error) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-beige mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[25px] md:mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
               <div className="text-red-500 text-xl">Error: {error}</div>
@@ -135,7 +135,7 @@ const ProductDetails = () => {
   if (!product || Object.keys(product).length === 0) {
     return (
       <Layout>
-        <div className="w-full py-16 bg-beige mt-[67px]">
+        <div className="w-full py-16 bg-beige mt-[25px] md:mt-[67px]">
           <div className="max-w-7xl mx-auto px-[5%]">
             <div className="flex items-center justify-center h-64">
               <div className="text-gray-600 text-xl">Product not found</div>
@@ -148,20 +148,21 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <div className="w-full py-16 bg-beige mt-[67px]">
+      <div className="w-full py-16 bg-beige mt-[25px] md:mt-[67px]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
-          <div className="xl:w-1/2">
+          {/* Images Section - Desktop: full images, Mobile/Tablet: only main image */}
+          <div className="xl:w-1/2 xl:order-1 order-1">
             {/* Product Images Display */}
             {product.productImageGallery && product.productImageGallery.length > 0 ? (
               <div className="space-y-4">
                 {/* Main Image - Changes based on selected scent */}
-                <div className="bg-gray-50 rounded-xl p-4 sm:p-6 lg:p-8 border-2 border-gray-200">
-                  <div className="min-h-[400px] flex items-center justify-center">
+                <div className="bg-gray-50 rounded-xl border-2 border-gray-200">
+                  <div className="flex items-center justify-center">
                     <img
                       src={product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex]}
                       alt={`${product.name} ${selectedScent}`}
-                      className="max-w-full max-h-[500px] object-contain rounded-lg"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'block';
@@ -174,46 +175,49 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                {/* Remaining Images - 2 Column Grid (excluding currently selected main image) */}
-                {product.productImageGallery.length > 1 && (
-                  <div className="grid grid-cols-2 gap-4">
-                    {product.productImageGallery
-                      .filter((_, index) => index !== selectedImageIndex)
-                      .map((img, index) => {
-                        const originalIndex = product.productImageGallery.findIndex(item => item === img);
-                        const scentName = product.scents[originalIndex] || `Image ${originalIndex + 1}`;
-                        return (
-                          <div key={originalIndex} className="bg-gray-50 rounded-xl p-4 sm:p-6 lg:p-8 border-2 border-gray-200">
-                            <div className="min-h-[200px] flex items-center justify-center">
-                              <img
-                                src={img.url || img}
-                                alt={`${product.name} ${scentName}`}
-                                className="max-w-full max-h-[250px] object-contain rounded-lg"
-                                onError={(e) => {
-                                  e.target.style.display = 'none';
-                                  e.target.nextSibling.style.display = 'block';
-                                }}
-                              />
-                              <div style={{display: 'none'}} className="text-center text-gray-500">
-                                <p>Image failed to load</p>
-                                <p className="text-xs">URL: {img.url || img}</p>
+                {/* Remaining Images - Desktop: 2 Column Grid, Mobile/Tablet: Hidden (shown at bottom) */}
+                <div className="hidden xl:block">
+                  {product.productImageGallery.length > 1 && (
+                    <div className="grid grid-cols-2 gap-4">
+                      {product.productImageGallery
+                        .filter((_, index) => index !== selectedImageIndex)
+                        .map((img, index) => {
+                          const originalIndex = product.productImageGallery.findIndex(item => item === img);
+                          const scentName = product.scents[originalIndex] || `Image ${originalIndex + 1}`;
+                          return (
+                            <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200">
+                              <div className="flex items-center justify-center">
+                                <img
+                                  src={img.url || img}
+                                  alt={`${product.name} ${scentName}`}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'block';
+                                  }}
+                                />
+                                <div style={{display: 'none'}} className="text-center text-gray-500">
+                                  <p>Image failed to load</p>
+                                  <p className="text-xs">URL: {img.url || img}</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                  </div>
-                )}
+                          );
+                        })}
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
-              <div className="bg-gray-50 rounded-xl p-8 border-2 border-gray-200 text-center">
+              <div className="bg-gray-50 rounded-xl border-2 border-gray-200 text-center">
                 <p className="text-gray-600">No images available for this product</p>
                 <p className="text-xs text-gray-400 mt-2">productImageGallery: {JSON.stringify(product.productImageGallery)}</p>
               </div>
             )}
           </div>
 
-          <div className="xl:w-1/2 px-4 sm:px-0">
+          {/* Product Details Section - Order 2 on mobile, 2 on desktop */}
+          <div className="xl:w-1/2 px-4 sm:px-0 xl:order-2 order-2">
             {/* Product Title and Price */}
             <div className="mb-6">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 leading-tight">
@@ -270,7 +274,7 @@ const ProductDetails = () => {
                   type="number"
                   value={quantity}
                   onChange={handleQuantityChange}
-                  className="w-16 h-10 text-center border-2 border-gray-300 rounded-lg focus:border-[#D4A574] focus:outline-none"
+                  className="w-16 h-10 text-center border-2 border-gray-300 rounded-lg focus:border-[#D4A574] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   min="1"
                   max="99"
                 />
@@ -335,6 +339,42 @@ const ProductDetails = () => {
               <p className="text-sm text-gray-600 leading-relaxed">
                 {product.description}
               </p>
+            </div>
+
+            {/* Remaining Images - Mobile/Tablet only (shown in column after description) */}
+            <div className="xl:hidden">
+              {product.productImageGallery && product.productImageGallery.length > 1 && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-gray-900 mb-3 text-left">More Images</h3>
+                  <div className="flex flex-col gap-0">
+                    {product.productImageGallery
+                      .filter((_, index) => index !== selectedImageIndex)
+                      .map((img, index) => {
+                        const originalIndex = product.productImageGallery.findIndex(item => item === img);
+                        const scentName = product.scents[originalIndex] || `Image ${originalIndex + 1}`;
+                        return (
+                          <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200">
+                            <div className="flex items-center justify-center">
+                              <img
+                                src={img.url || img}
+                                alt={`${product.name} ${scentName}`}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                  e.target.nextSibling.style.display = 'block';
+                                }}
+                              />
+                              <div style={{display: 'none'}} className="text-center text-gray-500">
+                                <p>Image failed to load</p>
+                                <p className="text-xs">URL: {img.url || img}</p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+              )}
             </div>
 
           </div>

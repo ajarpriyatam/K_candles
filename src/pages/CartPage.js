@@ -15,26 +15,31 @@ const CartPage = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-  const Packaging = totalQuantity > 0 ? Math.ceil(totalQuantity / 48) * 400 : 0;
-  const gst = subtotal * 0.08;
-  const total = subtotal + Packaging + gst;
+  const total = subtotal + 15;
 
-  const updateQuantity = (id, newQuantity) => {
+  const updateQuantity = (id, selectedScent, newQuantity) => {
     if (newQuantity < MINIMUM_ORDER_QUANTITY) {
       toast.error(`Minimum order quantity is ${MINIMUM_ORDER_QUANTITY} units`);
       return;
     }
 
     setCart(
-      cart.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
+      cart.map((item) => {
+        // Match by both ID and scent (if both have scents)
+        const sameId = item.id === id;
+        const sameScent = (item.selectedScent || '') === (selectedScent || '');
+        return (sameId && sameScent) ? { ...item, quantity: newQuantity } : item;
+      })
     );
   };
 
-  const removeItem = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+  const removeItem = (id, selectedScent) => {
+    setCart(cart.filter((item) => {
+      // Match by both ID and scent (if both have scents)
+      const sameId = item.id === id;
+      const sameScent = (item.selectedScent || '') === (selectedScent || '');
+      return !(sameId && sameScent);
+    }));
     toast.success("Item removed from cart");
   };
 
@@ -136,23 +141,18 @@ const CartPage = () => {
                             </div>
                           </div>
 
-                          {/* Product Meta */}
-                          <div className="flex flex-wrap gap-3 mb-4">
-                            <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
-                              <span className="text-gray-600 text-sm">Sizes:</span>
-                              <span className="text-gray-800 font-medium">
-                                {Array.isArray(item.sizes) ? item.sizes.join(", ") : item.size}
-                              </span>
+                          {/* Scent Information */}
+                          {item.selectedScent && (
+                            <div className="flex flex-wrap gap-3 mb-4">
+                              <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
+                                <span className="text-gray-600 text-sm">Scent:</span>
+                                <span className="text-gray-800 font-medium">
+                                  {item.selectedScent}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex flex-wrap gap-3 mb-4">
-                            <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
-                              <span className="text-gray-600 text-sm">Colors:</span>
-                              <span className="text-gray-800 font-medium">
-                                {Array.isArray(item.colors) ? item.colors.join(", ") : item.color}
-                              </span>
-                            </div>
-                          </div>
+                          )}
+
                         </div>
 
                         {/* Quantity Controls & Remove */}
@@ -161,7 +161,7 @@ const CartPage = () => {
                             <span className="text-gray-600 text-sm">Quantity:</span>
                             <div className="flex items-center bg-gray-50 rounded-lg overflow-hidden border-2 border-gray-200">
                               <button
-                                onClick={() => updateQuantity(item.id, item.quantity - 48)}
+                                onClick={() => updateQuantity(item.id, item.selectedScent, item.quantity - 1)}
                                 className={`px-4 py-2 text-gray-700 transition-colors duration-200 ${
                                   item.quantity > MINIMUM_ORDER_QUANTITY 
                                     ? "hover:bg-[#D4A574] hover:text-beige" 
@@ -173,7 +173,7 @@ const CartPage = () => {
                               </button>
                               <span className="px-6 py-2 text-gray-800 font-bold bg-beige">{item.quantity}</span>
                               <button
-                                onClick={() => updateQuantity(item.id, item.quantity + 48)}
+                                onClick={() => updateQuantity(item.id, item.selectedScent, item.quantity + 1)}
                                 className="px-4 py-2 hover:bg-[#D4A574] hover:text-beige text-gray-700 transition-colors duration-200"
                               >
                                 <FaPlus className="text-sm" />
@@ -184,7 +184,7 @@ const CartPage = () => {
                             </span>
                           </div>
                           <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeItem(item.id, item.selectedScent)}
                             className="flex items-center gap-2 text-red-500 hover:text-red-600 hover:bg-red-50 px-4 py-2 rounded-lg transition-all duration-200 font-medium"
                           >
                             <FaTrash />
@@ -224,14 +224,14 @@ const CartPage = () => {
                     <div className="flex justify-between text-gray-600">
                       <span className="flex items-center gap-2">
                         <FaShippingFast className="text-[#D4A574]" />
-                        Packaging
+                        Convenience fee
                       </span>
-                      <span className="font-semibold text-gray-800">₹{Packaging.toFixed(2)}</span>
+                      <span className="font-semibold text-gray-800">₹{15}</span>
                     </div>
-                    <div className="flex justify-between text-gray-600">
+                    {/* <div className="flex justify-between text-gray-600">
                       <span>GST (8%)</span>
                       <span className="font-semibold text-gray-800">₹{gst.toFixed(2)}</span>
-                    </div>
+                    </div> */}
                     
                     <div className="border-t-2 border-gray-200 pt-4">
                       <div className="flex justify-between items-center">

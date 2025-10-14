@@ -12,6 +12,8 @@ import Layout from "./admin/layout/Layout";
 import PageNotFound from "./pages/PageNotFound";
 import Orders from "./pages/user/Order";
 import Profile from "./pages/user/Profile";
+import NewArrivals from "./pages/NewArrivals";
+import DiwaliSale from "./pages/DiwaliSale";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/orders/tracking" element={<TrackOrder />} />
       <Route path="/account" element={<LoginSignUp />} />
+      <Route path="/new-arrivals" element={<NewArrivals />} />
+      <Route path="/diwali-sale" element={<DiwaliSale />} />
       <Route path="/" element={<PrivateRoute />}>
         <Route path="user/orders" element={<Orders />} />
         <Route path="user/profile" element={<Profile />} />

@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://b-ls-solestyle.vercel.app/api/$1"
+      "dest": "https://kavera-api.vercel.app/api/$1"
     },
     {
       "handle": "filesystem"

@@ -13,7 +13,7 @@ const HomePage = () => {
       <CandleCollections />
       <Recommendation />
       <WhyChooseUs />
-      <Newsletter />
+      {/* <Newsletter /> */}
     </Layout>
   );
 };

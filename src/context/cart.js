@@ -2,7 +2,7 @@ import { useState, useContext, createContext, useEffect } from "react";
 
 const CartContext = createContext();
 
-const MINIMUM_ORDER_QUANTITY = 48;
+const MINIMUM_ORDER_QUANTITY = 1;
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -45,7 +45,12 @@ const CartProvider = ({ children }) => {
 
     setCart(prevCart => {
       const existingItemIndex = prevCart.findIndex(
-        item => item.id === validatedItem.id
+        item => {
+          // Check if same product ID AND same scent (if both have scents)
+          const sameId = item.id === validatedItem.id;
+          const sameScent = (item.selectedScent || '') === (validatedItem.selectedScent || '');
+          return sameId && sameScent;
+        }
       );
 
       if (existingItemIndex !== -1) {
