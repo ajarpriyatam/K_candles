@@ -31,17 +31,17 @@ const Footer = () => {
               Luxury for every home. Stay one step ahead in the world of Aroma & Candles.
             </p>
             <div className="flex gap-3">
-              <SocialIcons
+              {/* <SocialIcons
                 to={"https://facebook.com"}
                 icon={FaFacebookF}
                 className="hover:!text-[#D4A574]"
-              />
+              /> */}
               <SocialIcons
-                to={"https://instagram.com"}
+                to={"https://www.instagram.com/kavera_luxury/#"}
                 icon={FaInstagram}
                 className="hover:!text-[#D4A574]"
               />
-              <SocialIcons
+              {/* <SocialIcons
                 to={"https://youtube.com"}
                 icon={FaYoutube}
                 className="hover:!text-[#D4A574]"
@@ -49,8 +49,10 @@ const Footer = () => {
               <SocialIcons
                 to={"https://pinterest.com"}
                 icon={FaPinterest}
+                .
+                
                 className="hover:!text-[#D4A574]"
-              />
+              /> */}
             </div>
           </div>
 
@@ -100,26 +102,26 @@ const Footer = () => {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
-                  to="tel:+91-1234567890"
+                  to="tel:+91 88528 22025"
                   className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
                 >
-                  P: +91-1234567890
+                  P: +91 88528 22025
                 </Link>
               </li>
               <li>
                 <Link
-                  to='mailto:contact@kavera.co.in'
+                  to='mailto:Kaveraluxury@gmail.com'
                   className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors break-all"
                 >
-                  E: contact@kavera.co.in
+                  E: Kaveraluxury@gmail.com
                 </Link>
               </li>
-              <li className="text-gray-600 text-[14px]">
+              {/* <li className="text-gray-600 text-[14px]">
                 Shipping just Rs. 75 for orders upto Rs. 500!
               </li>
               <li className="text-gray-600 text-[14px]">
                 COD Available for Orders up to Rs. 250!
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

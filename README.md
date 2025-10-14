@@ -168,8 +168,8 @@ This project is licensed under the MIT License.
 
 ## 📞 Contact
 
-- **Email**: contact@kavera.co.in
-- **Phone**: +91-1234567890
+- **Email**: Kaveraluxury@gmail.com
+- **Phone**: ‪‪+91 88528 22025
 
 ## 🙏 Acknowledgments
 
