@@ -12,23 +12,23 @@ import {
 //   profileReducer,
 //   userReducer,
 // } from "./reducers/userReducres";
-// import {
-//   allOrdersReducer,
-//   myOrdersReducer,
-//   orderDetailsReducer,
-// } from "./reducers/orderReducers";
+import {
+  allOrdersReducer,
+  myOrdersReducer,
+  orderDetailsReducer,
+} from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   products: productsReducer,
-  productDetails: productDetailsReducer, // ← Added missing comma here
+  productDetails: productDetailsReducer,
   // user: userReducer,
   // profile: profileReducer,
-  // myOrders: myOrdersReducer,
-  // orderDetails: orderDetailsReducer,
+  myOrders: myOrdersReducer,
+  orderDetails: orderDetailsReducer,
   newProduct: newProductReducer,
   productsAdmin: productsReducerAdmin,
   deleteProduct: deleteProductReducer,
-  // allOrders: allOrdersReducer,
+  allOrders: allOrdersReducer,
 });
 
 const middleware = [thunk];

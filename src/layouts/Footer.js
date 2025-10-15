@@ -1,13 +1,13 @@
 import React from "react";
 import Logo from "../component/common/Logo";
 import SocialIcons from "../component/common/SocialIcons";
-import {FaInstagram } from "react-icons/fa";
+import {FaInstagram, FaWhatsapp } from "react-icons/fa";
 // import { FaFacebookF, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const quickLinks = [
-    { name: "About Us", link: "/about" },
+    // { name: "About Us", link: "/about" },
     { name: "FAQs", link: "/faq" },
     { name: "Return & Exchange Policy", link: "/returns" },
     { name: "Shipping & Cancellations", link: "/shipping" },
@@ -15,7 +15,7 @@ const Footer = () => {
 
   const shopLinks = [
     { name: "New Arrivals", link: "/new-arrivals/collection" },
-    { name: "Diwali Special", link: "/diwali/collection" },
+    { name: "Diwali Special", link: "/diwali-sale" },
     { name: "Gift Sets", link: "/giftsets/collection" },
     { name: "All Collections", link: "/all/collection" },
   ];
@@ -40,6 +40,11 @@ const Footer = () => {
               <SocialIcons
                 to={"https://www.instagram.com/kavera_luxury/#"}
                 icon={FaInstagram}
+                className="hover:!text-[#D4A574]"
+              />
+              <SocialIcons
+                to={"https://wa.me/918852822025"}
+                icon={FaWhatsapp}
                 className="hover:!text-[#D4A574]"
               />
               {/* <SocialIcons
@@ -102,20 +107,30 @@ const Footer = () => {
             </h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link
-                  to="tel:+91 88528 22025"
+                <a
+                  href="tel:+91 88528 22025"
                   className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
                 >
                   P: +91 88528 22025
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to='mailto:Kaveraluxury@gmail.com'
+                <a
+                  href='mailto:Kaveraluxury@gmail.com'
                   className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors break-all"
                 >
                   E: Kaveraluxury@gmail.com
-                </Link>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/918852822025"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 text-[14px] hover:text-[#D4A574] transition-colors"
+                >
+                  W: +91 88528 22025
+                </a>
               </li>
               {/* <li className="text-gray-600 text-[14px]">
                 Shipping just Rs. 75 for orders upto Rs. 500!

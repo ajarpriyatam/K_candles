@@ -1,6 +1,6 @@
 // import AdminManagement from "./pages/AdminManagement";
 // import BodyTypes from "./pages/BodyTypes";
-// import Booking from "./pages/Booking";
+import Orders from "./pages/orders";
 // import BookingHistory from "./pages/BookingHistory";
 // import Brands from "./pages/Brands";
 // import AllCars from "./pages/cars/AllCars";
@@ -32,11 +32,11 @@ export const routes = [
         path: "/all/products",
         element: <AllProducts />,
       },
-      // {
-      //   name: "Bookings",
-      //   path: "/bookings",
-      //   element: <Booking />,
-      // },
+      {
+        name: "Orders",
+        path: "/orders",
+        element: <Orders />,
+      },
       // {
       //   name: "Booking History",
       //   path: "/booking-history",

@@ -3,6 +3,7 @@ import { FiPackage, FiDollarSign, FiTrendingUp, FiUsers } from 'react-icons/fi';
 // import { allProducts } from '../../constants';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsAdmin } from '../../actions/productAction';
+import { getSampleProducts, getSampleOrders } from '../data/sampleData';
 
 const DashboardStats = () => {
     const dispatch = useDispatch();
@@ -10,19 +11,22 @@ const DashboardStats = () => {
   let allProducts = useSelector((state) => state.productsAdmin.productsAll)
   const productCount = useSelector((state) => state.productsAdmin.productsCount)
 
+  // Use sample data if no real data is available
+  const displayProducts = allProducts && allProducts.length > 0 ? allProducts : getSampleProducts();
+  const sampleOrders = getSampleOrders();
 
   useEffect(() => {
     dispatch(getAllProductsAdmin());
   }, [dispatch]);
 
-  const totalValue = allProducts && allProducts.reduce((sum, product) => sum + parseInt(product.price || 0), 0);
-  const averagePrice = totalValue / productCount;
-  const uniqueBrands = [...new Set(allProducts && allProducts.map(product => product.brandName))].length;
+  const totalValue = displayProducts && displayProducts.reduce((sum, product) => sum + parseInt(product.price || 0), 0);
+  const averagePrice = totalValue / (productCount || displayProducts.length);
+  const uniqueBrands = [...new Set(displayProducts && displayProducts.map(product => product.productBrand))].length;
 
   const stats = [
     {
       title: 'Total Products',
-      value: productCount,
+      value: productCount || displayProducts.length,
       icon: FiPackage,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
@@ -48,11 +52,11 @@ const DashboardStats = () => {
       changeType: 'positive'
     },
     {
-      title: 'Brands',
-      value: uniqueBrands,
+      title: 'Total Orders',
+      value: sampleOrders.length,
       icon: FiUsers,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
+      color: 'text-[#D4A574]',
+      bgColor: 'bg-[#D4A574]/10',
       change: '+2',
       changeType: 'positive'
     }

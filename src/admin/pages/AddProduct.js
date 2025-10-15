@@ -23,8 +23,7 @@ const AddProduct = () => {
         name: "",
         category: "",
         price: "",
-        sizes: "",
-        colors: "",
+        scents: "",
         tokenId: "",
         description: "",
         display: true,
@@ -52,8 +51,7 @@ const AddProduct = () => {
                 name: productData.name || "",
                 category: productData.category || "",
                 price: productData.price || "",
-                sizes: productData.sizes ? productData.sizes.join(", ") : "",
-                colors: productData.colors ? productData.colors.join(", ") : "",
+                scents: productData.scents ? productData.scents.join(", ") : "",
                 tokenId: productData.tokenId || "",
                 description: productData.description || "",
                 display: productData.display !== undefined ? productData.display : true,
@@ -72,8 +70,7 @@ const AddProduct = () => {
                     name: "",
                     category: "",
                     price: "",
-                    sizes: "",
-                    colors: "",
+                    scents: "",
                     tokenId: "",
                     description: "",
                     display: true,
@@ -131,12 +128,8 @@ const AddProduct = () => {
             errors.price = "Valid price is required";
         }
         
-        if (!formData.sizes.trim()) {
-            errors.sizes = "At least one size is required";
-        }
-        
-        if (!formData.colors.trim()) {
-            errors.colors = "At least one color is required";
+        if (!formData.scents.trim()) {
+            errors.scents = "At least one scent is required";
         }
         
         if (!formData.description.trim()) {
@@ -210,14 +203,12 @@ const AddProduct = () => {
         setValidationErrors({});
         setShowValidationError(false);
         
-        let colors = formData.colors.split(",");
-        let sizes = formData.sizes.split(",");
+        let scents = formData.scents.split(",");
 
         // Filter out empty array items
         const filteredData = {
             ...formData,
-            sizes: sizes.filter(size => size.trim() !== ""),
-            colors: colors.filter(color => color.trim() !== ""),
+            scents: scents.filter(scent => scent.trim() !== ""),
             productImageGallery: formData.productImageGallery.filter(image => image.trim() !== ""),
             price: parseFloat(formData.price)
         };
@@ -292,7 +283,7 @@ const AddProduct = () => {
                                         id="display"
                                         checked={formData.display}
                                         onChange={(e) => handleInputChange('display', e.target.checked)}
-                                        className="w-5 h-5 text-orange-500 bg-beige border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
+                                        className="w-5 h-5 text-[#D4A574] bg-beige border-gray-300 rounded focus:ring-[#D4A574] focus:ring-2"
                                     />
                                     <label htmlFor="display" className="text-sm text-black-300 cursor-pointer">
                                         Show this product on the website
@@ -300,75 +291,46 @@ const AddProduct = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* Grid Layout: 2x2 pattern */}
-                        <div className="grid grid-cols-2 gap-6" style={{ gridTemplateRows: 'auto auto' }}>
-                            {/* Colors Section - Position (1,1) */}
-                            <div className="col-start-1 col-end-2 row-start-1 row-end-2">
+                        {/* Scents Section */}
+                        <div className="grid grid-cols-1 gap-6">
+                            <div>
                                 <label className="block text-sm font-semibold text-black-300 mt-3 mb-1 flex items-center gap-2">
-                                    Colors <span className="text-red-400">*</span>
+                                    Scents <span className="text-red-400">*</span>
                                 </label>
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-3">
                                         <div className="flex-1">
                                             <input
-                                                placeholder="Enter color (e.g., Black, beige, Red)"
-                                                value={formData.colors}
-                                                onChange={(e) => handleInputChange('colors', e.target.value)}
+                                                placeholder="Enter scents (e.g., Lavender, Vanilla, Rose, Sandalwood)"
+                                                value={formData.scents}
+                                                onChange={(e) => handleInputChange('scents', e.target.value)}
                                                 className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 ${
-                                                    validationErrors.colors 
+                                                    validationErrors.scents 
                                                         ? "border-red-500 focus:border-red-500 focus:ring-red-500" 
-                                                        : "border-gray-300 focus:border-orange-500 focus:ring-orange-500/20"
+                                                        : "border-gray-300 focus:border-[#D4A574] focus:ring-[#D4A574]/20"
                                                 }`}
                                             />
                                         </div>
                                     </div>
-                                    {validationErrors.colors && (
-                                        <p className="text-red-500 text-xs">{validationErrors.colors}</p>
+                                    {validationErrors.scents && (
+                                        <p className="text-red-500 text-xs">{validationErrors.scents}</p>
                                     )}
                                 </div>
                             </div>
 
-                            {/* Sizes Section - Position (2,1) */}
-                            <div className="col-start-2 col-end-3 row-start-1 row-end-2">
-                                <label className="block text-sm font-semibold text-black-300 mt-3 mb-1 flex items-center gap-2">
-                                    Sizes <span className="text-red-400">*</span>
-                                </label>
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex-1">
-                                            <input
-                                                placeholder="Enter size (e.g., Small, Medium, Large)"
-                                                value={formData.sizes}
-                                                onChange={(e) => handleInputChange('sizes', e.target.value)}
-                                                className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 ${
-                                                    validationErrors.sizes 
-                                                        ? "border-red-500 focus:border-red-500 focus:ring-red-500" 
-                                                        : "border-gray-300 focus:border-orange-500 focus:ring-orange-500/20"
-                                                }`}
-                                            />
-                                        </div>
-                                    </div>
-                                    {validationErrors.sizes && (
-                                        <p className="text-red-500 text-xs">{validationErrors.sizes}</p>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Description Section - Position (1,2) and (2,2) - spans both columns */}
-                            <div className="col-start-1 col-end-3 row-start-2 row-end-3">
-                                <div>
-                                    <TextArea
-                                        label="Description"
-                                        placeholder="Enter detailed product description..."
-                                        id="description"
-                                        value={formData.description}
-                                        onChange={(e) => handleInputChange('description', e.target.value)}
-                                        className={validationErrors.description ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""}
-                                    />
-                                    {validationErrors.description && (
-                                        <p className="text-red-500 text-xs mt-1">{validationErrors.description}</p>
-                                    )}
-                                </div>
+                            {/* Description Section */}
+                            <div>
+                                <TextArea
+                                    label="Description"
+                                    placeholder="Enter detailed product description..."
+                                    id="description"
+                                    value={formData.description}
+                                    onChange={(e) => handleInputChange('description', e.target.value)}
+                                    className={validationErrors.description ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""}
+                                />
+                                {validationErrors.description && (
+                                    <p className="text-red-500 text-xs mt-1">{validationErrors.description}</p>
+                                )}
                             </div>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -390,7 +352,7 @@ const AddProduct = () => {
                                         className={`w-full h-12 px-4 rounded-xl border-2 border-dashed cursor-pointer flex items-center justify-center gap-2 transition-colors ${
                                             validationErrors.productImageGallery 
                                                 ? "border-red-300 hover:border-red-400 text-red-400 hover:text-red-500" 
-                                                : "border-orange-300 hover:border-orange-400 text-orange-400 hover:text-orange-500"
+                                                : "border-[#D4A574]/30 hover:border-[#D4A574]/50 text-[#D4A574] hover:text-[#D4A574]"
                                         } bg-beige/90`}
                                     >
                                         <FaUpload size={16} />
@@ -438,7 +400,7 @@ const AddProduct = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-beige font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3"
+                            className="px-8 py-4 bg-gradient-to-r from-[#D4A574] to-[#C08860] hover:from-[#C08860] hover:to-[#B07A50] text-beige font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3"
                         >
                             {loading ? (
                                 <>

@@ -5,11 +5,13 @@ import ProductModal from './ProductModal';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsAdmin, deleteProduct, clearDeleteSuccess } from '../../actions/productAction';
+import { getSampleProducts } from '../data/sampleData';
 
 const ProductsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBrand, setFilterBrand] = useState('');
-  const [viewMode, setViewMode] = useState('table'); // 'table' or 'grid'
+  const [filterCategory, setFilterCategory] = useState('');
+  const [viewMode, setViewMode] = useState('table'); // Only table view
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,6 +23,9 @@ const ProductsList = () => {
   // const productCount = useSelector((state) => state.productsAdmin.productsCount)
   const loading = useSelector((state) => state.productsAdmin.loading)
   const { isDeleted, loading: deleteLoading } = useSelector((state) => state.deleteProduct)
+
+  // Use sample data if no real data is available
+  const displayProducts = allProducts && allProducts.length > 0 ? allProducts : getSampleProducts();
 
 
   useEffect(() => {
@@ -36,20 +41,28 @@ const ProductsList = () => {
 
   // Get unique brands for filter
   const brands = useMemo(() => {
-    if (!allProducts || allProducts.length === 0) return [];
-    const uniqueBrands = [...new Set(allProducts.map(product => product.name))];
+    if (!displayProducts || displayProducts.length === 0) return [];
+    const uniqueBrands = [...new Set(displayProducts.map(product => product.name))];
     return uniqueBrands.map(brand => ({ label: brand, value: brand }));
-  }, [allProducts]);
+  }, [displayProducts]);
+
+  // Get unique categories for filter
+  const categories = useMemo(() => {
+    if (!displayProducts || displayProducts.length === 0) return [];
+    const uniqueCategories = [...new Set(displayProducts.map(product => product.category))];
+    return uniqueCategories.filter(cat => cat).map(category => ({ label: category, value: category }));
+  }, [displayProducts]);
 
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    if (!allProducts || allProducts.length === 0) return [];
+    if (!displayProducts || displayProducts.length === 0) return [];
     
-    let filtered = allProducts.filter(product => {
+    let filtered = displayProducts.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesBrand = !filterBrand || product.name === filterBrand;
-      return matchesSearch && matchesBrand;
+      const matchesCategory = !filterCategory || product.category === filterCategory;
+      return matchesSearch && matchesBrand && matchesCategory;
     });
 
     // Sort products
@@ -82,7 +95,7 @@ const ProductsList = () => {
     });
 
     return filtered;
-  }, [allProducts, searchTerm, filterBrand, sortBy, sortOrder]);
+  }, [displayProducts, searchTerm, filterBrand, filterCategory, sortBy, sortOrder]);
 
   const handleEdit = (product) => {
     // Navigate to AddProduct page with product data for editing
@@ -112,147 +125,79 @@ const ProductsList = () => {
     setModalMode('view');
   };
 
-  const ProductCard = ({ product, index }) => (
-    <div className="bg-beige rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
-      <div className="flex items-start space-x-4">
-        <div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
-          <img
-            src={product.productImageGallery[0].url}
-            alt={product.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/80x80?text=No+Image';
-            }}
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-semibold text-gray-900 truncate">
-            {product.name}
-          </h3>
-          <p className="text-sm text-gray-600 truncate">
-            {product.tokenId}
-          </p>
-          <p className="text-lg font-bold text-primary mt-1">
-            ₹{product.price}
-          </p>
-          <div className="flex items-center space-x-2 mt-2">
-            <div className="flex space-x-1">
-              {product.colors?.slice(0, 3).map((color, idx) => (
-                <div
-                  key={idx}
-                  className="w-4 h-4 rounded-full border border-gray-300"
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-              {product.colors?.length > 3 && (
-                <span className="text-xs text-gray-500">+{product.colors.length - 3}</span>
-              )}
-            </div>
-            <div className="text-xs text-gray-500">
-              Sizes: {product.sizes?.join(', ')}
-            </div>
-          </div>
-        </div>
-        <div className="flex space-x-2">
-          {/* <button
-            onClick={() => handleView(product)}
-            className="p-2 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors"
-            title="View"
-          >
-            <FiEye size={16} />
-          </button> */}
-          <button
-            onClick={() => handleEdit(product)}
-            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-            title="Edit"
-          >
-            <FiEdit size={16} />
-          </button>
-          <button
-            onClick={() => handleDelete(product)}
-            disabled={deleteLoading}
-            className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            title="Delete"
-          >
-            <FiTrash2 size={16} />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 
   const ProductTableRow = ({ product, index }) => (
-    <tr className="hover:bg-gray-50">
-      <td className="px-6 py-4 beigespace-nowrap">
-        <div className="flex items-center">
-          <div className="w-12 h-12 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+    <tr className="hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 transition-all duration-200 border-b border-gray-100">
+      <td className="px-6 py-6 whitespace-nowrap">
+        <div className="flex items-center space-x-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
             <img
               src={product.productImageGallery[0].url}
               alt={product.name}
               className="w-full h-full object-cover"
               onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/48x48?text=No+Image';
+                e.target.src = 'https://via.placeholder.com/64x64?text=No+Image';
               }}
             />
           </div>
-          <div className="ml-4">
-            <div className="text-sm font-medium text-gray-900">
+          <div>
+            <div className="text-sm font-bold text-gray-900 mb-1">
               {product.name}
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-xs text-gray-500">
               {product.productBrand}
             </div>
           </div>
         </div>
       </td>
-      <td className="px-6 py-4 beigespace-nowrap">
-        <div className="text-sm font-bold text-primary">
-          ₹{product.price}
+      <td className="px-6 py-6 whitespace-nowrap">
+        <div className="text-lg font-bold text-[#D4A574]">
+          ₹{product.price?.toLocaleString()}
         </div>
       </td>
-      <td className="px-6 py-4 beigespace-nowrap">
-        <div className="flex space-x-1">
-          {product.colors?.slice(0, 3).map((color, idx) => (
-            <div
+      <td className="px-6 py-6 whitespace-nowrap">
+        <div className="flex flex-wrap gap-1.5">
+          {product.scents?.slice(0, 2).map((scent, idx) => (
+            <span
               key={idx}
-              className="w-4 h-4 rounded-full border border-gray-300"
-              style={{ backgroundColor: color }}
-            />
+              className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-[#D4A574]/10 text-[#D4A574] border border-[#D4A574]/20 hover:bg-[#D4A574]/20 transition-colors"
+            >
+              {scent}
+            </span>
           ))}
-          {product.colors?.length > 3 && (
-            <span className="text-xs text-gray-500 ml-1">+{product.colors.length - 3}</span>
+          {product.scents?.length > 2 && (
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200 transition-colors">
+              +{product.scents.length - 2}
+            </span>
           )}
         </div>
       </td>
-      <td className="px-6 py-4 beigespace-nowrap text-sm text-gray-500">
-        {product.sizes?.join(', ')}
+      <td className="px-6 py-6 whitespace-nowrap">
+        <div className="text-sm font-semibold text-gray-800 bg-gradient-to-r from-[#D4A574]/10 to-[#D4A574]/5 px-3 py-2 rounded-lg border border-[#D4A574]/20">
+          {product.category || 'Uncategorized'}
+        </div>
       </td>
-      <td className="px-6 py-4 beigespace-nowrap text-sm text-gray-500">
-        {product.tokenId}
+      <td className="px-6 py-6 whitespace-nowrap">
+        <div className="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-lg">
+          {product.tokenId}
+        </div>
       </td>
-      <td className="px-6 py-4 beigespace-nowrap text-right text-sm font-medium">
-        <div className="flex space-x-2 justify-end">
-          {/* <button
-            onClick={() => handleView(product)}
-            className="text-gray-600 hover:text-primary"
-            title="View"
-          >
-            <FiEye size={16} />
-          </button> */}
+      <td className="px-6 py-6 whitespace-nowrap text-right">
+        <div className="flex space-x-3 justify-end">
           <button
             onClick={() => handleEdit(product)}
-            className="text-gray-600 hover:text-blue-600"
-            title="Edit"
+            className="p-2.5 text-gray-600 hover:text-[#D4A574] hover:bg-[#D4A574]/10 rounded-lg transition-all duration-200 hover:shadow-md"
+            title="Edit Product"
           >
-            <FiEdit size={16} />
+            <FiEdit size={18} />
           </button>
           <button
             onClick={() => handleDelete(product)}
             disabled={deleteLoading}
-            className="text-gray-600 hover:text-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
-            title="Delete"
+            className="p-2.5 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Delete Product"
           >
-            <FiTrash2 size={16} />
+            <FiTrash2 size={18} />
           </button>
         </div>
       </td>
@@ -262,48 +207,50 @@ const ProductsList = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Products</h2>
-          <p className="text-gray-600 mt-1">
-            Manage your candle products ({filteredProducts && filteredProducts.length} total)
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Product Management</h2>
+          <p className="text-gray-600 text-lg">
+            Manage your candle collection ({filteredProducts && filteredProducts.length} products)
           </p>
         </div>
-        <div className="mt-4 sm:mt-0">
-        <Link to="/admin/add/product">
-          <button className="bg-primary text-beige px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
-            Add New Product
-          </button>
+        <div className="mt-6 sm:mt-0">
+          <Link to="/admin/add/product">
+            <button className="bg-gradient-to-r from-[#D4A574] to-[#C08860] hover:from-[#C08860] hover:to-[#B07A50] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold flex items-center gap-2">
+              <span>+</span>
+              Add New Product
+            </button>
           </Link>
         </div>
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-beige rounded-lg shadow-sm p-4">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-4">
+      <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-6">
           <div className="flex-1 max-w-md">
             <div className="relative">
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Search products by name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D4A574] focus:border-[#D4A574] transition-all duration-200 bg-gray-50 focus:bg-white"
               />
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+
             <select
-              value={filterBrand}
-              onChange={(e) => setFilterBrand(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              value={filterCategory}
+              onChange={(e) => setFilterCategory(e.target.value)}
+              className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D4A574] focus:border-[#D4A574] transition-all duration-200 bg-gray-50 focus:bg-white"
             >
-              <option value="">All Brands</option>
-              {brands.map(brand => (
-                <option key={brand.value} value={brand.value}>
-                  {brand.label}
+              <option value="">All Categories</option>
+              {categories.map(category => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
                 </option>
               ))}
             </select>
@@ -311,7 +258,7 @@ const ProductsList = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D4A574] focus:border-[#D4A574] transition-all duration-200 bg-gray-50 focus:bg-white"
             >
               <option value="name">Sort by Name</option>
               <option value="price">Sort by Price</option>
@@ -320,75 +267,53 @@ const ProductsList = () => {
 
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="px-4 py-3 border border-gray-300 rounded-xl hover:bg-[#D4A574]/10 hover:border-[#D4A574] focus:ring-2 focus:ring-[#D4A574] focus:border-[#D4A574] transition-all duration-200 bg-gray-50 hover:bg-white"
             >
-              {sortOrder === 'asc' ? '↑' : '↓'}
+              {sortOrder === 'asc' ? '↑ Ascending' : '↓ Descending'}
             </button>
 
-            <div className="flex border border-gray-300 rounded-lg overflow-hidden">
-              <button
-                onClick={() => setViewMode('table')}
-                className={`px-3 py-2 ${viewMode === 'table' ? 'bg-primary text-beige' : 'bg-beige text-gray-700 hover:bg-gray-50'}`}
-              >
-                Table
-              </button>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`px-3 py-2 ${viewMode === 'grid' ? 'bg-primary text-beige' : 'bg-beige text-gray-700 hover:bg-gray-50'}`}
-              >
-                Grid
-              </button>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Products List */}
-      <div className="bg-beige rounded-lg shadow-sm">
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
         {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-            <div className="text-gray-500 text-lg mt-4">Loading products...</div>
+          <div className="text-center py-16">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#D4A574]"></div>
+            <div className="text-gray-600 text-lg mt-4 font-medium">Loading products...</div>
           </div>
-        ) : viewMode === 'table' ? (
+        ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full">
+              <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                     Product
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                     Price
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Colors
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Scents
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Sizes
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    tokenId
+                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Product ID
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-beige divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-100">
                 {filteredProducts && filteredProducts.map((product, index) => (
                   <ProductTableRow key={index} product={product} index={index} />
                 ))}
               </tbody>
             </table>
-          </div>
-        ) : (
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts && filteredProducts.map((product, index) => (
-                <ProductCard key={index} product={product} index={index} />
-              ))}
-            </div>
           </div>
         )}
 

@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const Offers = () => {
+const sale = () => {
   const [offerDetails, setOfferDetails] = useState({
     offerType: "regular",
     couponDiscount: "15",
@@ -230,4 +230,4 @@ const Offers = () => {
   );
 };
 
-export default Offers;
+export default sale;

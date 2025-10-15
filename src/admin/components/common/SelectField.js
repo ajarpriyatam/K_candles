@@ -38,63 +38,51 @@ const SelectField = (props) => {
   };
 
   return (
-    <div className="flex flex-col space-y-[8px]" ref={selectRef}>
-      <div
-        className={`${!props.notRequired && "required-input"}`}
-        style={{
-          fontFamily: "Noto Sans",
-          fontWeight: 600,
-          color: "#666666",
-          fontSize: "12px",
-          lineHeight: "18px",
-        }}
-      >
+    <div className="flex flex-col space-y-2" ref={selectRef}>
+      <label className="block text-sm font-semibold text-black-300">
         {props.label}
-      </div>
-      <div
-        className="relative inline-flex w-full bg-beige rounded-lg border border-[#CCCCCC] focus:outline-none focus:border-primary focus:ring-primary h-14"
-        style={{
-          border: isOpen
-            ? "1px solid var(--color-primary)"
-            : "1px solid #CCCCCC",
-        }}
-      >
+      </label>
+      <div className="relative">
         <div
-          className="w-full px-4 py-2 cursor-pointer flex items-center"
-          onClick={handleToggle}
-          style={{ color: selectedOption ? "#000000" : "#A0AEC0" }}
-        >
-          {selectedOption || props.placeholder || "Select"}
-        </div>
-        <div
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 h-6 w-6 flex justify-center items-center cursor-pointer"
+          className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 cursor-pointer flex items-center justify-between transition-all duration-200 ${
+            props.className || ""
+          } ${
+            isOpen
+              ? "border-[#D4A574] focus:border-[#D4A574] focus:ring-[#D4A574]/20"
+              : "border-gray-300 hover:border-[#D4A574]/50"
+          }`}
           onClick={handleToggle}
         >
-          {isOpen ? (
-            <IoIosArrowUp style={{ color: "var(--color-primary)" }} />
-          ) : (
-            <IoIosArrowDown style={{ color: "#A0AEC0" }} />
-          )}
+          <span className={`${selectedOption ? "text-gray-800" : "text-gray-500"}`}>
+            {selectedOption || props.placeholder || "Select an option"}
+          </span>
+          <div className="flex items-center">
+            {isOpen ? (
+              <IoIosArrowUp className="text-[#D4A574] transition-transform duration-200" />
+            ) : (
+              <IoIosArrowDown className="text-gray-400 transition-transform duration-200" />
+            )}
+          </div>
         </div>
-      </div>
 
-      {isOpen && (
-        <div
-          ref={dropdownRef}
-          className="absolute z-50 left-0 mt-1 w-800px origin-top-right rounded-md bg-beige max-h-60 overflow-y-auto custom-scrollbar shadow-lg border border-gray-200"
-        >
-          {props.items.map((item) => (
-            <button
-              type="button"
-              onClick={onOptionClicked(item)}
-              key={item.value}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-beige focus:outline-none"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      )}
+        {isOpen && (
+          <div
+            ref={dropdownRef}
+            className="absolute z-50 left-0 right-0 mt-1 w-full origin-top rounded-xl bg-white max-h-60 overflow-y-auto shadow-lg border border-gray-200"
+          >
+            {props.items.map((item) => (
+              <button
+                type="button"
+                onClick={onOptionClicked(item)}
+                key={item.value}
+                className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#D4A574]/10 hover:text-[#D4A574] focus:outline-none transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

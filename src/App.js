@@ -14,6 +14,12 @@ import Orders from "./pages/user/Order";
 import Profile from "./pages/user/Profile";
 import NewArrivals from "./pages/NewArrivals";
 import DiwaliSale from "./pages/DiwaliSale";
+import FAQ from "./pages/FAQ";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import RefundPolicy from "./pages/RefundPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const App = () => {
   return (
@@ -26,6 +32,12 @@ const App = () => {
       <Route path="/account" element={<LoginSignUp />} />
       <Route path="/new-arrivals" element={<NewArrivals />} />
       <Route path="/diwali-sale" element={<DiwaliSale />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/returns" element={<ReturnPolicy />} />
+      <Route path="/shipping" element={<ShippingPolicy />} />
+      <Route path="/terms" element={<TermsConditions />} />
+      <Route path="/refund" element={<RefundPolicy />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/" element={<PrivateRoute />}>
         <Route path="user/orders" element={<Orders />} />
         <Route path="user/profile" element={<Profile />} />

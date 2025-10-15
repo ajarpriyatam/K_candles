@@ -3,8 +3,7 @@ import { IoHome } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import { NavItem } from "./NavItem";
 
-import { FaList } from "react-icons/fa6";
-import { IoCarSportSharp } from "react-icons/io5";
+import { FaPlus, FaShoppingBag, FaBoxes } from "react-icons/fa";
 import Logo from "../../component/common/Logo";
 
 const SideNav = ({ onClose }) => {
@@ -15,14 +14,15 @@ const SideNav = ({ onClose }) => {
 
   const menuItems = useMemo(() => [
     { name: "Dashboard", path: "/admin/dashboard", icon: IoHome },
+    { name: "Add Product", path: "/admin/add/product", icon: FaPlus },
+    { name: "Orders", path: "/admin/orders", icon: FaShoppingBag },
+    { name: "All Products", path: "/admin/all/products", icon: FaBoxes },
     // { type: "text", name: "Manage Booking" },
-    { name: "Add Product", path: "/admin/add/product", icon: FaList },
     // { name: "Booking History", path: "/admin/booking-history", icon: FaTable },
     // { name: "Verify Users", path: "/admin/verify-users", icon: FaUsers },
     // { type: "text", name: "Manage Services" },
     // { name: "Brands", path: "/admin/brands", icon: TbBrandCodesandbox },
     // { name: "Body Types", path: "/admin/body-types", icon: FaCar },
-    { name: "All Products", path: "/admin/all/products", icon: IoCarSportSharp },
     // { name: "Offers", path: "/admin/offers", icon: BiSolidOffer },
     // { type: "text", name: "Site Management" },
     // {
