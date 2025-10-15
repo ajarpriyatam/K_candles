@@ -21,7 +21,6 @@ const DashboardStats = () => {
 
   const totalValue = displayProducts && displayProducts.reduce((sum, product) => sum + parseInt(product.price || 0), 0);
   const averagePrice = totalValue / (productCount || displayProducts.length);
-  const uniqueBrands = [...new Set(displayProducts && displayProducts.map(product => product.productBrand))].length;
 
   const stats = [
     {

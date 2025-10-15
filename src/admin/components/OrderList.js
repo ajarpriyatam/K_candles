@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { FiSearch, FiEye, FiEdit, FiFilter, FiDownload, FiCheck, FiX } from 'react-icons/fi';
+import { FiSearch, FiEye, FiEdit, FiCheck, FiX } from 'react-icons/fi';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllOrders, getOrderDetails } from '../../actions/orderAction';
 import Modal from './common/Modal';
@@ -19,7 +19,7 @@ const OrderList = () => {
   const dispatch = useDispatch();
   
   const { orders = [], loading = false, error = null } = useSelector((state) => state.allOrders || {});
-  const { order: orderDetails = null, loading: orderDetailsLoading = false } = useSelector((state) => state.orderDetails || {});
+  const { loading: orderDetailsLoading = false } = useSelector((state) => state.orderDetails || {});
 
   // Use sample data if no real data is available
   const displayOrders = orders && orders.length > 0 ? orders : getSampleOrders();

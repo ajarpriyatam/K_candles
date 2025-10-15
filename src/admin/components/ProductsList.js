@@ -9,9 +9,7 @@ import { getSampleProducts } from '../data/sampleData';
 
 const ProductsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterBrand, setFilterBrand] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
-  const [viewMode, setViewMode] = useState('table'); // Only table view
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -39,12 +37,6 @@ const ProductsList = () => {
     }
   }, [isDeleted, dispatch]);
 
-  // Get unique brands for filter
-  const brands = useMemo(() => {
-    if (!displayProducts || displayProducts.length === 0) return [];
-    const uniqueBrands = [...new Set(displayProducts.map(product => product.name))];
-    return uniqueBrands.map(brand => ({ label: brand, value: brand }));
-  }, [displayProducts]);
 
   // Get unique categories for filter
   const categories = useMemo(() => {
@@ -60,9 +52,8 @@ const ProductsList = () => {
     
     let filtered = displayProducts.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesBrand = !filterBrand || product.name === filterBrand;
       const matchesCategory = !filterCategory || product.category === filterCategory;
-      return matchesSearch && matchesBrand && matchesCategory;
+      return matchesSearch && matchesCategory;
     });
 
     // Sort products
@@ -95,7 +86,7 @@ const ProductsList = () => {
     });
 
     return filtered;
-  }, [displayProducts, searchTerm, filterBrand, filterCategory, sortBy, sortOrder]);
+  }, [displayProducts, searchTerm, filterCategory, sortBy, sortOrder]);
 
   const handleEdit = (product) => {
     // Navigate to AddProduct page with product data for editing
