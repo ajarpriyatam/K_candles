@@ -9,56 +9,8 @@ const TrackOrder = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const mockOrder = {
-    orderNumber: "ORD-12345678",
-    orderDate: "March 25, 2025",
-    status: "In Transit",
-    estimatedDelivery: "April 2, 2025",
-    items: [
-      {
-        id: 1,
-        name: "Air Max 270",
-        color: "Black/beige",
-        size: "10.5",
-        image: "/api/placeholder/100/80",
-        price: 149.99,
-      },
-      {
-        id: 2,
-        name: "UltraBoost 5.0",
-        color: "Gray/Blue",
-        size: "10",
-        image: "/api/placeholder/100/80",
-        price: 179.99,
-      },
-    ],
-    trackingSteps: [
-      {
-        date: "March 25, 2025",
-        status: "Order Placed",
-        description: "Your order has been received",
-      },
-      {
-        date: "March 26, 2025",
-        status: "Processing",
-        description: "Your order is being prepared",
-      },
-      {
-        date: "March 28, 2025",
-        status: "Shipped",
-        description: "Your order has left our warehouse",
-      },
-      {
-        date: "March 30, 2025",
-        status: "In Transit",
-        description: "Your order is on its way",
-      },
-      { date: null, status: "Delivered", description: "Package delivered" },
-    ],
-    shippingAddress: "123 Main Street, Apt 4B, New York, NY 10001",
-    carrier: "FedEx",
-    trackingNumber: "FDX7891234567",
-  };
+  // Order tracking will be implemented with real API
+  const mockOrder = null;
 
   const handleTrackOrder = (e) => {
     e.preventDefault();
@@ -71,15 +23,9 @@ const TrackOrder = () => {
       return;
     }
 
+    // TODO: Implement real API call for order tracking
     setTimeout(() => {
-      if (
-        orderNumber.toUpperCase() === "ORD-12345678" &&
-        email.toLowerCase() === "demo@example.com"
-      ) {
-        setTrackingResult(mockOrder);
-      } else {
-        setError("Order not found. Please check your order number and email.");
-      }
+      setError("Order tracking API not implemented yet. Please contact support.");
       setIsLoading(false);
     }, 1000);
   };
@@ -186,7 +132,7 @@ const TrackOrder = () => {
                 </div>
 
                 <div className="mt-4 text-center text-xs text-gray-500">
-                  For demo purposes, use: ORD-12345678 / demo@example.com
+                  Please enter your order number and email address
                 </div>
               </form>
             </div>

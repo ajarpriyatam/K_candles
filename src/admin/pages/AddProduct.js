@@ -7,6 +7,7 @@ import {createProduct, clearErrors} from '../../actions/productAction'
 import { useSelector, useDispatch } from "react-redux";
 import { NEW_PRODUCT_RESET } from "../../constant/productConstant";
 import { useLocation } from "react-router-dom";
+import { CATEGORY_OPTIONS } from '../../constants/categories';
 
 
 
@@ -23,7 +24,7 @@ const AddProduct = () => {
         name: "",
         category: "",
         price: "",
-        scents: "",
+        scent: "",
         tokenId: "",
         description: "",
         display: true,
@@ -36,13 +37,7 @@ const AddProduct = () => {
     const [validationErrors, setValidationErrors] = useState({});
     const [showValidationError, setShowValidationError] = useState(false);
 
-    const categoryOptions = [
-        { label: "Jar Candles", value: "Jar Candles" },
-        { label: "Pillar Candles", value: "Pillar Candles" },
-        { label: "T-Light Candles", value: "T-Light Candles" },
-        { label: "Gift Sets", value: "Gift Sets" },
-        { label: "Home Decor", value: "Home Decor" }
-    ];
+    const categoryOptions = CATEGORY_OPTIONS;
 
     // Populate form data when in edit mode
     useEffect(() => {
@@ -51,7 +46,7 @@ const AddProduct = () => {
                 name: productData.name || "",
                 category: productData.category || "",
                 price: productData.price || "",
-                scents: productData.scents ? productData.scents.join(", ") : "",
+                scent: productData.scent ? productData.scent.join(", ") : "",
                 tokenId: productData.tokenId || "",
                 description: productData.description || "",
                 display: productData.display !== undefined ? productData.display : true,
@@ -70,7 +65,7 @@ const AddProduct = () => {
                     name: "",
                     category: "",
                     price: "",
-                    scents: "",
+                    scent: "",
                     tokenId: "",
                     description: "",
                     display: true,
@@ -128,8 +123,8 @@ const AddProduct = () => {
             errors.price = "Valid price is required";
         }
         
-        if (!formData.scents.trim()) {
-            errors.scents = "At least one scent is required";
+        if (!formData.scent.trim()) {
+            errors.scent = "At least one scent is required";
         }
         
         if (!formData.description.trim()) {
@@ -203,12 +198,12 @@ const AddProduct = () => {
         setValidationErrors({});
         setShowValidationError(false);
         
-        let scents = formData.scents.split(",");
+        let scent = formData.scent.split(",");
 
         // Filter out empty array items
         const filteredData = {
             ...formData,
-            scents: scents.filter(scent => scent.trim() !== ""),
+            scent: scent.filter(scent => scent.trim() !== ""),
             productImageGallery: formData.productImageGallery.filter(image => image.trim() !== ""),
             price: parseFloat(formData.price)
         };
@@ -291,29 +286,29 @@ const AddProduct = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* Scents Section */}
+                        {/* scent Section */}
                         <div className="grid grid-cols-1 gap-6">
                             <div>
                                 <label className="block text-sm font-semibold text-black-300 mt-3 mb-1 flex items-center gap-2">
-                                    Scents <span className="text-red-400">*</span>
+                                    scent <span className="text-red-400">*</span>
                                 </label>
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-3">
                                         <div className="flex-1">
                                             <input
-                                                placeholder="Enter scents (e.g., Lavender, Vanilla, Rose, Sandalwood)"
-                                                value={formData.scents}
-                                                onChange={(e) => handleInputChange('scents', e.target.value)}
+                                                placeholder="Enter scent (e.g., Lavender, Vanilla, Rose, Sandalwood)"
+                                                value={formData.scent}
+                                                onChange={(e) => handleInputChange('scent', e.target.value)}
                                                 className={`w-full h-12 px-4 rounded-xl border focus:outline-none focus:ring-2 bg-beige/90 text-gray-800 ${
-                                                    validationErrors.scents 
+                                                    validationErrors.scent 
                                                         ? "border-red-500 focus:border-red-500 focus:ring-red-500" 
                                                         : "border-gray-300 focus:border-[#D4A574] focus:ring-[#D4A574]/20"
                                                 }`}
                                             />
                                         </div>
                                     </div>
-                                    {validationErrors.scents && (
-                                        <p className="text-red-500 text-xs">{validationErrors.scents}</p>
+                                    {validationErrors.scent && (
+                                        <p className="text-red-500 text-xs">{validationErrors.scent}</p>
                                     )}
                                 </div>
                             </div>

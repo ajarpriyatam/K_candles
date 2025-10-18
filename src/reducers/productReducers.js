@@ -17,6 +17,12 @@ import {
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_RESET,
+    TOP_PRODUCTS_REQUEST,
+    TOP_PRODUCTS_SUCCESS,
+    TOP_PRODUCTS_FAIL,
+    NEW_ARRIVALS_REQUEST,
+    NEW_ARRIVALS_SUCCESS,
+    NEW_ARRIVALS_FAIL,
   } from "../constant/productConstant";
   
   export const productsReducer = (state = { products: [] }, action) => {
@@ -169,7 +175,61 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         return state;
     }
   };
-  
 
+export const topProductsReducer = (state = { topProducts: [] }, action) => {
+  switch (action.type) {
+    case TOP_PRODUCTS_REQUEST:
+      return {
+        loading: true,
+        topProducts: [],
+      };
+    case TOP_PRODUCTS_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        productsCount: action.payload.productscount,
+      };
+    case TOP_PRODUCTS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const newArrivalsReducer = (state = { newArrivals: [] }, action) => {
+  switch (action.type) {
+    case NEW_ARRIVALS_REQUEST:
+      return {
+        loading: true,
+        newArrivals: [],
+      };
+    case NEW_ARRIVALS_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        productsCount: action.payload.productscount,
+      };
+    case NEW_ARRIVALS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
   
 

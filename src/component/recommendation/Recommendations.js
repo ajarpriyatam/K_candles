@@ -2,14 +2,14 @@ import React, { useRef, useEffect, useState } from "react";
 import ProductCard from "../common/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../../actions/productAction";
+import { getTopProducts } from "../../actions/productAction";
 
 const Recommendation = () => {
   const dispatch = useDispatch();
-  const productAll = useSelector((state) => state.products.products)
+  const productAll = useSelector((state) => state.topProducts.products)
   const scrollContainerRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("NEW ARRIVALS");
-  
+  console.log("azsxdcd recoom",productAll);
   const products = productAll ? productAll.filter(product => product.tokenId.startsWith('A')): [];
 
   const scrollLeft = () => {
@@ -25,7 +25,7 @@ const Recommendation = () => {
   };
 
   useEffect(() => {
-    dispatch(getProduct());
+    dispatch(getTopProducts());
   }, [dispatch]);
 
   return (

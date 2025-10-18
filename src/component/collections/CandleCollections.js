@@ -7,35 +7,35 @@ const CandleCollections = () => {
       name: "Aroma Gift Set",
       image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg",
       description: "Perfect gifts for loved ones",
-      link: "/giftsets/collection",
+      link: "/arome_gift_sets/collection",
       color: "#D4A574"
     },
     {
       name: "T-Light Candles",
       image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg",
       description: "Perfect for meditation and ambiance",
-      link: "/tlight/collection",
+      link: "/t_light/collection",
       color: "#C08860"
     },
     {
       name: "Jar & Container Candles",
       image: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg",
       description: "Long-lasting luxury scents",
-      link: "/jar/collection",
+      link: "/jar_candles/collection",
       color: "#266B37"
     },
     {
       name: "Pillar Candles",
       image: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg",
       description: "Classic elegance for any space",
-      link: "/pillar/collection",
+      link: "/pillar_candles/collection",
       color: "#D4A574"
     },
     {
       name: "Home Decor",
       image: "https://images.pexels.com/photos/243125/pexels-photo-243125.jpeg",
       description: "Enhance your living space",
-      link: "/homedecor/collection",
+      link: "/home_decor/collection",
       color: "#C08860"
     },
     {
@@ -56,7 +56,7 @@ const CandleCollections = () => {
       name: "Raw Material",
       image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg",
       description: "We also provide all types of Waxes, Wicks, Fragrances, Moulds, Etc. We...",
-      link: "/rawmaterial/collection",
+      link: "/raw_material/collection",
       color: "#266B37"
     }
   ];

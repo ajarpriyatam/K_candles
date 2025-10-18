@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 import ProductsPage from "./pages/Products";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
 import TrackOrder from "./pages/TrackOrder";
 import LoginSignUp from "./pages/signup/LoginSignUp";
 import PrivateRoute from "./routes/private";
@@ -28,6 +29,7 @@ const App = () => {
       <Route path="/product/:slug" element={<ProductDetails />} />
       <Route path="/:category/collection" element={<ProductsPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/checkout" element={<OrderPage />} />
       <Route path="/orders/tracking" element={<TrackOrder />} />
       <Route path="/account" element={<LoginSignUp />} />
       <Route path="/new-arrivals" element={<NewArrivals />} />

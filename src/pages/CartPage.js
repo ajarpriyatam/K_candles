@@ -244,8 +244,11 @@ const CartPage = () => {
                   </div>
 
                   {/* Checkout Button */}
-                  <button className="w-full bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige rounded-xl py-4 font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[#D4A574]/50 transform hover:scale-105 mb-4">
-                    Coming Soon...
+                  <button 
+                    onClick={() => navigate("/checkout")}
+                    className="w-full bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige rounded-xl py-4 font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[#D4A574]/50 transform hover:scale-105 mb-4"
+                  >
+                    Proceed to Checkout
                   </button>
                 </div>
               </div>

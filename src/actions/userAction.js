@@ -28,7 +28,7 @@ import {
       dispatch({ type: LOGIN_REQUEST });
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.post(
-        `/api/v1/sign_in`,
+        `/api/v2/sign_in`,
         { email, password },
         config
       );
@@ -41,7 +41,7 @@ import {
   export const register = (userData) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_USER_REQUEST });
-      const { data } = await axios.post(`/api/v1/sign_up`, userData);
+      const { data } = await axios.post(`/api/v2/sign_up`, userData);
       dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     } catch (error) {
       dispatch({
@@ -54,7 +54,7 @@ import {
   export const loadUser = () => async (dispatch) => {
     try {
       dispatch({ type: LOAD_USER_REQUEST });
-      const { data } = await axios.get(`/api/v1/my`);
+      const { data } = await axios.get(`/api/v2/my`);
       dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
       dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
@@ -63,7 +63,7 @@ import {
   
   export const logout = () => async (dispatch) => {
     try {
-      await axios.get(`/api/v1/sign_out`);
+      await axios.get(`/api/v2/sign_out`);
       dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
       dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
@@ -73,7 +73,7 @@ import {
   export const updateProfile = (userData) => async (dispatch) => {
     try {
       dispatch({ type: UPDATE_PROFILE_REQUEST });
-      const { data } = await axios.put(`/api/v1/my/update`, userData);
+      const { data } = await axios.put(`/api/v2/my/update`, userData);
       dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
     } catch (error) {
       dispatch({
@@ -88,7 +88,7 @@ import {
       dispatch({ type: UPDATE_PASSWORD_REQUEST });
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.put(
-        `/api/v1/password/update`,
+        `/api/v2/password/update`,
         passwords,
         config
       );
@@ -104,7 +104,7 @@ import {
   export const deleteUser = () => async (dispatch) => {
     try {
       dispatch({type:DELETE_USER_REQUEST})
-      const {data} = await axios.delete(`/api/v1/my/delete`);
+      const {data} = await axios.delete(`/api/v2/my/delete`);
       dispatch({ type: DELETE_USER_SUCCESS, payload:data.success });
     } catch (error) {
       dispatch({ type: DELETE_USER_FAIL, payload: error.response.data.message });

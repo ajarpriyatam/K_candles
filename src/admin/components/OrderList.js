@@ -3,7 +3,6 @@ import { FiSearch, FiEye, FiEdit, FiCheck, FiX } from 'react-icons/fi';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllOrders, getOrderDetails } from '../../actions/orderAction';
 import Modal from './common/Modal';
-import { getSampleOrders } from '../data/sampleData';
 
 const OrderList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,8 +20,8 @@ const OrderList = () => {
   const { orders = [], loading = false, error = null } = useSelector((state) => state.allOrders || {});
   const { loading: orderDetailsLoading = false } = useSelector((state) => state.orderDetails || {});
 
-  // Use sample data if no real data is available
-  const displayOrders = orders && orders.length > 0 ? orders : getSampleOrders();
+  // Use real data from Redux store
+  const displayOrders = orders || [];
 
   useEffect(() => {
     dispatch(getAllOrders());
@@ -83,7 +82,7 @@ const OrderList = () => {
   }, [displayOrders, searchTerm, filterStatus, sortBy, sortOrder]);
 
   const handleViewOrder = async (orderId) => {
-    // For sample data, find the order directly
+    // Find the order in the orders list
     const order = displayOrders.find(o => o._id === orderId);
     
     if (order) {
@@ -107,7 +106,7 @@ const OrderList = () => {
     if (orderToUpdate && newStatus) {
       // In a real app, this would dispatch an action to update the order
       console.log(`Updating order ${orderToUpdate._id} to status: ${newStatus}`);
-      // For demo purposes, we'll just close the modal
+      // Close the modal after status update
       setIsUpdateModalOpen(false);
       setOrderToUpdate(null);
       setNewStatus('');

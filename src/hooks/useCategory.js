@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "../services/axios";
 import { getCategoryUrl } from "../services/apiUrl";
-import { allCategories } from "../constants";
+import { ALL_CATEGORIES, CATEGORY_OPTIONS } from "../constants/categories";
 
 const useCategory = () => {
-  const [categories, setCategories] = useState(allCategories);
+  const [categories, setCategories] = useState(ALL_CATEGORIES);
 
   const getCategories = async () => {
     try {
       const { data } = await axios.get(getCategoryUrl);
-      setCategories(data?.category);
+      setCategories(data?.category || ALL_CATEGORIES);
     } catch (error) {
+      // Fallback to default categories if API fails
+      setCategories(ALL_CATEGORIES);
     }
   };
 
@@ -19,6 +21,11 @@ const useCategory = () => {
   }, []);
 
   return categories;
+};
+
+// Export category options for forms
+export const useCategoryOptions = () => {
+  return CATEGORY_OPTIONS;
 };
 
 export default useCategory;

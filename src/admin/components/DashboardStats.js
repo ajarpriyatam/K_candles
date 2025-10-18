@@ -3,7 +3,6 @@ import { FiPackage, FiDollarSign, FiTrendingUp, FiUsers } from 'react-icons/fi';
 // import { allProducts } from '../../constants';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsAdmin } from '../../actions/productAction';
-import { getSampleProducts, getSampleOrders } from '../data/sampleData';
 
 const DashboardStats = () => {
     const dispatch = useDispatch();
@@ -11,9 +10,8 @@ const DashboardStats = () => {
   let allProducts = useSelector((state) => state.productsAdmin.productsAll)
   const productCount = useSelector((state) => state.productsAdmin.productsCount)
 
-  // Use sample data if no real data is available
-  const displayProducts = allProducts && allProducts.length > 0 ? allProducts : getSampleProducts();
-  const sampleOrders = getSampleOrders();
+  // Use real data from Redux store
+  const displayProducts = allProducts || [];
 
   useEffect(() => {
     dispatch(getAllProductsAdmin());
@@ -52,11 +50,11 @@ const DashboardStats = () => {
     },
     {
       title: 'Total Orders',
-      value: sampleOrders.length,
+      value: 0, // Will be updated when orders API is implemented
       icon: FiUsers,
       color: 'text-[#D4A574]',
       bgColor: 'bg-[#D4A574]/10',
-      change: '+2',
+      change: '+0',
       changeType: 'positive'
     }
   ];

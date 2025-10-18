@@ -16,15 +16,16 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const cartData = useCart();
   const { addToCart } = cartData[2];
-  const { product, loading, error } = useSelector((state) => state.productDetails);
+  const { product, loading, error } = useSelector((state) => state.productDetails.product);
   useEffect(() => {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);
+  console.log("azsxdcd product details",product)
 
   // Set default scent when product loads
   useEffect(() => {
-    if (product?.scents && product.scents.length > 0) {
-      setSelectedScent(product.scents[0]);
+    if (product?.scent && product.scent.length > 0) {
+      setSelectedScent(product.scent[0]);
       setSelectedImageIndex(0); // Reset to first image when product changes
     }
     setQuantity(1); // Reset quantity when product changes
@@ -44,9 +45,9 @@ const ProductDetails = () => {
       tokenId: product.tokenId,
     };
 
-    // Add scent information only if scents are available
-    if (product?.scents && product.scents.length > 0) {
-      cartItem.scents = product.scents; // All available scents
+    // Add scent information only if scent are available
+    if (product?.scent && product.scent.length > 0) {
+      cartItem.scent = product.scent; // All available scent
       cartItem.selectedScent = selectedScent; // Selected scent
     }
 
@@ -55,17 +56,16 @@ const ProductDetails = () => {
   };
 
   const buyNow = () => {
-    handleAddToCart();
-    navigate("/cart");
+    navigate("/checkout");
   };
 
   // Function to handle scent selection and update image
-  const handleScentSelection = (scent) => {
+  const handlescentelection = (scent) => {
     setSelectedScent(scent);
     
     // Find the index of the selected scent and update image accordingly
-    if (product?.scents) {
-      const scentIndex = product.scents.indexOf(scent);
+    if (product?.scent) {
+      const scentIndex = product.scent.indexOf(scent);
       if (scentIndex !== -1) {
         setSelectedImageIndex(scentIndex);
       }
@@ -94,7 +94,7 @@ const ProductDetails = () => {
             ? "bg-[#D4A574] text-beige border-[#D4A574] shadow-lg shadow-[#D4A574]/30"
             : "bg-beige text-gray-700 border-gray-300 hover:border-[#D4A574]/50 hover:bg-gray-50"
         }`}
-        onClick={() => handleScentSelection(scent)}
+        onClick={() => handlescentelection(scent)}
       >
         {scent}
       </button>
@@ -157,8 +157,8 @@ const ProductDetails = () => {
             {product.productImageGallery && product.productImageGallery.length > 0 ? (
               <div className="space-y-4">
                 {/* Main Image - Changes based on selected scent */}
-                <div className="bg-gray-50 rounded-xl border-2 border-gray-200">
-                  <div className="flex items-center justify-center">
+                <div className="bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden">
+                  <div className="aspect-square w-full">
                     <img
                       src={product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex]}
                       alt={`${product.name} ${selectedScent}`}
@@ -168,7 +168,7 @@ const ProductDetails = () => {
                         e.target.nextSibling.style.display = 'block';
                       }}
                     />
-                    <div style={{display: 'none'}} className="text-center text-gray-500">
+                    <div style={{display: 'none'}} className="text-center text-gray-500 p-4">
                       <p>Main image failed to load</p>
                       <p className="text-xs">URL: {product.productImageGallery[selectedImageIndex]?.url || product.productImageGallery[selectedImageIndex]}</p>
                     </div>
@@ -183,10 +183,10 @@ const ProductDetails = () => {
                         .filter((_, index) => index !== selectedImageIndex)
                         .map((img, index) => {
                           const originalIndex = product.productImageGallery.findIndex(item => item === img);
-                          const scentName = product.scents[originalIndex] || `Image ${originalIndex + 1}`;
+                          const scentName = product.scent[originalIndex] || `Image ${originalIndex + 1}`;
                           return (
-                            <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200">
-                              <div className="flex items-center justify-center">
+                            <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden">
+                              <div className="aspect-square w-full">
                                 <img
                                   src={img.url || img}
                                   alt={`${product.name} ${scentName}`}
@@ -196,7 +196,7 @@ const ProductDetails = () => {
                                     e.target.nextSibling.style.display = 'block';
                                   }}
                                 />
-                                <div style={{display: 'none'}} className="text-center text-gray-500">
+                                <div style={{display: 'none'}} className="text-center text-gray-500 p-2">
                                   <p>Image failed to load</p>
                                   <p className="text-xs">URL: {img.url || img}</p>
                                 </div>
@@ -240,7 +240,7 @@ const ProductDetails = () => {
             <div className="mb-6">
               <h5 className="text-sm font-medium text-gray-900 mb-3 text-left">Scent</h5>
               <div className="flex flex-wrap gap-2">
-                {product.scents && product.scents.map((scent) => (
+                {product.scent && product.scent.map((scent) => (
                   <ScentButton key={scent} scent={scent} />
                 ))}
               </div>
@@ -303,15 +303,15 @@ const ProductDetails = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8 mt-14">
               <button 
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 border-2 border-[#D4A574] text-[#D4A574] hover:bg-[#D4A574] hover:text-beige transition-all duration-300 rounded-lg font-medium"
+                className="flex-1 py-4 px-6 border-2 border-[#D4A574] text-[#D4A574] hover:bg-[#D4A574] hover:text-black transition-all duration-300 rounded-lg font-medium"
               >
                 ADD TO CART
               </button>
-              <button 
+              <button
                 onClick={buyNow}
                 className="flex-1 py-4 px-6 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige hover:opacity-90 transition-all duration-300 rounded-lg font-medium"
               >
-                COMING SOON...
+                BUY NOW
               </button>
             </div>
 
@@ -351,10 +351,10 @@ const ProductDetails = () => {
                       .filter((_, index) => index !== selectedImageIndex)
                       .map((img, index) => {
                         const originalIndex = product.productImageGallery.findIndex(item => item === img);
-                        const scentName = product.scents[originalIndex] || `Image ${originalIndex + 1}`;
+                        const scentName = product.scent[originalIndex] || `Image ${originalIndex + 1}`;
                         return (
-                          <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200">
-                            <div className="flex items-center justify-center">
+                          <div key={originalIndex} className="bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden">
+                            <div className="aspect-square w-full">
                               <img
                                 src={img.url || img}
                                 alt={`${product.name} ${scentName}`}
@@ -364,7 +364,7 @@ const ProductDetails = () => {
                                   e.target.nextSibling.style.display = 'block';
                                 }}
                               />
-                              <div style={{display: 'none'}} className="text-center text-gray-500">
+                              <div style={{display: 'none'}} className="text-center text-gray-500 p-2">
                                 <p>Image failed to load</p>
                                 <p className="text-xs">URL: {img.url || img}</p>
                               </div>

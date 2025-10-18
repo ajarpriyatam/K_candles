@@ -5,7 +5,7 @@ import ProductModal from './ProductModal';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsAdmin, deleteProduct, clearDeleteSuccess } from '../../actions/productAction';
-import { getSampleProducts } from '../data/sampleData';
+import { normalizeCategory, getCategoryContent } from '../../constants/categories';
 
 const ProductsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,8 +22,8 @@ const ProductsList = () => {
   const loading = useSelector((state) => state.productsAdmin.loading)
   const { isDeleted, loading: deleteLoading } = useSelector((state) => state.deleteProduct)
 
-  // Use sample data if no real data is available
-  const displayProducts = allProducts && allProducts.length > 0 ? allProducts : getSampleProducts();
+  // Use real data from Redux store
+  const displayProducts = allProducts || [];
 
 
   useEffect(() => {
@@ -41,8 +41,11 @@ const ProductsList = () => {
   // Get unique categories for filter
   const categories = useMemo(() => {
     if (!displayProducts || displayProducts.length === 0) return [];
-    const uniqueCategories = [...new Set(displayProducts.map(product => product.category))];
-    return uniqueCategories.filter(cat => cat).map(category => ({ label: category, value: category }));
+    const uniqueCategories = [...new Set(displayProducts.map(product => normalizeCategory(product.category)))];
+    return uniqueCategories.filter(cat => cat).map(category => ({ 
+      label: getCategoryContent(category).title, 
+      value: category 
+    }));
   }, [displayProducts]);
 
 
@@ -52,7 +55,8 @@ const ProductsList = () => {
     
     let filtered = displayProducts.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = !filterCategory || product.category === filterCategory;
+      const normalizedProductCategory = normalizeCategory(product.category);
+      const matchesCategory = !filterCategory || normalizedProductCategory === filterCategory;
       return matchesSearch && matchesCategory;
     });
 
@@ -148,7 +152,7 @@ const ProductsList = () => {
       </td>
       <td className="px-6 py-6 whitespace-nowrap">
         <div className="flex flex-wrap gap-1.5">
-          {product.scents?.slice(0, 2).map((scent, idx) => (
+          {product.scent?.slice(0, 2).map((scent, idx) => (
             <span
               key={idx}
               className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-[#D4A574]/10 text-[#D4A574] border border-[#D4A574]/20 hover:bg-[#D4A574]/20 transition-colors"
@@ -156,16 +160,16 @@ const ProductsList = () => {
               {scent}
             </span>
           ))}
-          {product.scents?.length > 2 && (
+          {product.scent?.length > 2 && (
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200 transition-colors">
-              +{product.scents.length - 2}
+              +{product.scent.length - 2}
             </span>
           )}
         </div>
       </td>
       <td className="px-6 py-6 whitespace-nowrap">
         <div className="text-sm font-semibold text-gray-800 bg-gradient-to-r from-[#D4A574]/10 to-[#D4A574]/5 px-3 py-2 rounded-lg border border-[#D4A574]/20">
-          {product.category || 'Uncategorized'}
+          {product.category ? getCategoryContent(product.category).title : 'Uncategorized'}
         </div>
       </td>
       <td className="px-6 py-6 whitespace-nowrap">
@@ -286,7 +290,7 @@ const ProductsList = () => {
                     Price
                   </th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Scents
+                    scent
                   </th>
                   <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                     Category

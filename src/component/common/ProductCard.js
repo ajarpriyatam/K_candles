@@ -8,6 +8,14 @@ const ProductCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
 
+  // Debug: Log product data to see what's available
+  console.log("ProductCard props:", {
+    name: props.name,
+    scent: props.scent,
+    candleType: props.candleType,
+    price: props.price
+  });
+
   // Calculate discount percentage if there's an original price
   const discountPercent = props.originalPrice 
     ? Math.round(((props.originalPrice - props.price) / props.originalPrice) * 100)
@@ -15,7 +23,7 @@ const ProductCard = (props) => {
 
   return (
     <div
-      className="group relative w-full h-full bg-beige rounded-xl overflow-hidden shadow-lg hover:shadow-[#D4A574]/30 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-gray-200 hover:border-[#D4A574]/50"
+      className="group relative w-full h-full bg-beige rounded-xl overflow-hidden shadow-lg hover:shadow-[#D4A574]/30 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-gray-200 hover:border-[#D4A574]/50 hover:bg-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => navigate(`/product/${props._id}`)}
@@ -73,12 +81,41 @@ const ProductCard = (props) => {
           </div>
         </div>
 
-        {/* Scent/Variant Info */}
-        {props.scent && (
-          <div className="mb-2">
-            <p className="text-xs text-gray-600">Scent: <span className="text-[#D4A574] font-medium">{props.scent}</span></p>
-          </div>
-        )}
+        {/* scent/Variant Info */}
+        {(() => {
+          // Handle different scent data structures and separate combined scents
+          let scents = [];
+          
+          if (props.scent) {
+            if (Array.isArray(props.scent)) {
+              scents = props.scent;
+            } else if (typeof props.scent === 'string') {
+              // Split combined scents like "RoseOad" into ["Rose", "Oud"]
+              // Also handle cases like "RoseOud" or "VanillaLavender"
+              scents = props.scent
+                .split(/(?=[A-Z])/) // Split on capital letters
+                .filter(s => s.trim()) // Remove empty strings
+                .map(s => s.trim()); // Trim whitespace
+            }
+          }
+          
+          return scents.length > 0 && (
+            <div className="mb-2">
+              <p className="text-xs text-gray-600 mb-1">scents:</p>
+              <div className="flex flex-wrap gap-1">
+                {scents.map((scent, index) => (
+                  <span 
+                    key={index}
+                    className="px-2 py-1 bg-gradient-to-r from-[#D4A574]/10 to-[#D4A574]/5 text-[#D4A574] text-xs rounded-full font-medium border border-[#D4A574]/30 hover:from-[#D4A574]/20 hover:to-[#D4A574]/10 transition-all duration-200 cursor-default"
+                    title={`${scent.trim()} scent`}
+                  >
+                    {scent.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Candle Type */}
         {props.candleType && (
@@ -92,10 +129,12 @@ const ProductCard = (props) => {
 
       {/* Quick View Button - Appears on Hover */}
       <div className={`absolute bottom-0 left-0 right-0 text-center transition-all duration-300 transform ${isHovered ? 'translate-y-0' : 'translate-y-full'}`}>
-        <button className="w-full py-3 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige font-medium hover:opacity-90 transition-all flex items-center justify-center gap-2">
-          <GiCandleFlame className="w-5 h-5" />
-          Quick View
-        </button>
+        <div className="bg-white/95 backdrop-blur-sm rounded-b-xl">
+          <button className="w-full py-3 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-white font-medium hover:from-[#C08860] hover:to-[#D4A574] transition-all flex items-center justify-center gap-2 shadow-lg rounded-b-xl">
+            <GiCandleFlame className="w-5 h-5" />
+            Quick View
+          </button>
+        </div>
       </div>
     </div>
   );

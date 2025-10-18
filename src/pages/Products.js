@@ -4,93 +4,33 @@ import Layout from "../layouts/Layout";
 import ProductCard from "../component/common/ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../actions/productAction";
+import { getCategoryContent, normalizeCategory } from "../constants/categories";
 
 const Products = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const { products: allProducts, loading, error } = useSelector((state) => state.products)
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  // Category-specific hero content
-  const getCategoryContent = (category) => {
-    const categoryConfig = {
-      "all": {
-        title: "Our Collections",
-        subtitle: "Discover luxury candles for every moment",
-        image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg"
-      },
-      "All": {
-        title: "Our Collections",
-        subtitle: "Discover luxury candles for every moment",
-        image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg"
-      },
-      "tlight": {
-        title: "T-Light Candles",
-        subtitle: "Perfect for meditation and ambiance",
-        image: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg"
-      },
-      "jar": {
-        title: "Jar & Container Candles",
-        subtitle: "Long-lasting luxury scents",
-        image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg"
-      },
-      "pillar": {
-        title: "Pillar Candles",
-        subtitle: "Classic elegance for any space",
-        image: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg"
-      },
-      "giftsets": {
-        title: "Aroma Gift Sets",
-        subtitle: "Perfect gifts for loved ones",
-        image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg"
-      },
-      "homedecor": {
-        title: "Home Decor",
-        subtitle: "Enhance your living space",
-        image: "https://images.pexels.com/photos/243125/pexels-photo-243125.jpeg"
-      },
-      "hvac": {
-        title: "Intelligent Aroma Systems",
-        subtitle: "HVAC & AHU Systems for Office Spaces & Luxury Homes",
-        image: "https://images.pexels.com/photos/278549/pexels-photo-278549.jpeg"
-      },
-      "humidifiers": {
-        title: "Humidifiers",
-        subtitle: "Maintain perfect humidity for your space",
-        image: "https://images.pexels.com/photos/321444/pexels-photo-321444.jpeg"
-      },
-      "rawmaterial": {
-        title: "Raw Materials",
-        subtitle: "Waxes, Wicks, Fragrances, Moulds & More",
-        image: "https://images.pexels.com/photos/1652109/pexels-photo-1652109.jpeg"
-      }
-    };
-    
-    return categoryConfig[category] || categoryConfig["All"];
-  };
+  const { products, loading, error } = useSelector((state) => state.products)
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Filter products based on selected category
-  const filteredProducts = allProducts ? allProducts.filter((product) => {
-    if (selectedCategory === "All" || selectedCategory === "all") return true;
-    return product.category === selectedCategory;
-  }) : [];
-
-  const currentCategoryContent = getCategoryContent(selectedCategory);
-
+  console.log("azsxdcd selectedCategory",selectedCategory);
+  const currentCategoryContent = getCategoryContent(category);
 
   useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
+    const normalizedCategory = normalizeCategory(category);
+    console.log("Original category:", category);
+    console.log("Normalized category:", normalizedCategory);
+    dispatch(getProduct(normalizedCategory));
+  }, [dispatch, category]);
 
   // Update selectedCategory when URL changes
   useEffect(() => {
     if (category) {
-      setSelectedCategory(category);
+      setSelectedCategory(normalizeCategory(category));
     } else {
-      setSelectedCategory("All");
+      setSelectedCategory("all");
     }
   }, [category]);
-
   return (
     <Layout>
       {/* Hero Image Section - 40% of screen height */}
@@ -122,11 +62,12 @@ const Products = () => {
             <div className="flex justify-center items-center py-20">
               <div className="text-[#BC2727] text-lg">Error: {error}</div>
             </div>
-          ) : filteredProducts && filteredProducts.length > 0 ? (
+          ) :  products &&  products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredProducts.map((product, index) => (
-                <ProductCard key={product._id || index} {...product} />
-              ))}
+              { products.map((product, index) => {
+                console.log("Product data for ProductCard:", product);
+                return <ProductCard key={product._id || index} {...product} />
+              })}
             </div>
           ) : (
             <div className="flex justify-center items-center py-20">

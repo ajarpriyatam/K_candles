@@ -2,21 +2,16 @@ import React, { useEffect } from "react";
 import Layout from "../layouts/Layout";
 import ProductCard from "../component/common/ProductCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../actions/productAction";
+import { getNewArrivals } from "../actions/productAction";
 
 const NewArrivals = () => {
   const dispatch = useDispatch();
-  const { products: allProducts, loading, error } = useSelector((state) => state.products);
+  const { products, loading, error } = useSelector((state) => state.newArrivals);
 
-  // Filter only new arrivals (products marked as new or recently added)
-  const newArrivals = allProducts ? allProducts.filter((product) => {
-    // You can customize this filter based on your product data structure
-    // For example: product.isNew === true or product.createdAt within last 30 days
-    return product.isNew === true || product.tag === "new";
-  }) : [];
+
 
   useEffect(() => {
-    dispatch(getProduct());
+    dispatch(getNewArrivals());
   }, [dispatch]);
 
   return (
@@ -50,9 +45,9 @@ const NewArrivals = () => {
             <div className="flex justify-center items-center py-20">
               <div className="text-[#BC2727] text-lg">Error: {error}</div>
             </div>
-          ) : newArrivals && newArrivals.length > 0 ? (
+          ) : products && products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {newArrivals.map((product, index) => (
+              {products.map((product, index) => (
                 <ProductCard key={product._id || index} {...product} />
               ))}
             </div>

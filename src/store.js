@@ -1,11 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { thunk } from "redux-thunk";
 import {
   newProductReducer,
   productDetailsReducer,
   productsReducer,
   productsReducerAdmin,
-  deleteProductReducer
+  deleteProductReducer,
+  topProductsReducer,
+  newArrivalsReducer
 } from "./reducers/productReducers";
 // import { products } from "./constants";
 // import {
@@ -29,13 +31,19 @@ const reducer = combineReducers({
   productsAdmin: productsReducerAdmin,
   deleteProduct: deleteProductReducer,
   allOrders: allOrdersReducer,
+  topProducts: topProductsReducer,
+  newArrivals: newArrivalsReducer,
 });
 
 const middleware = [thunk];
 
+// Compose Redux DevTools with middleware
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   reducer,
-  applyMiddleware(...middleware)
+  composeEnhancers(applyMiddleware(...middleware))
 );
+
 
 export default store;
