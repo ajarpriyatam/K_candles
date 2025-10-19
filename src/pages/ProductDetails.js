@@ -308,7 +308,7 @@ const ProductDetails = () => {
                 ADD TO CART
               </button>
               <button
-                onClick={buyNow}
+                onClick={() => navigate("/checkout")}
                 className="flex-1 py-4 px-6 bg-gradient-to-r from-[#D4A574] to-[#C08860] text-beige hover:opacity-90 transition-all duration-300 rounded-lg font-medium"
               >
                 BUY NOW
