@@ -74,15 +74,34 @@ const OrderPage = () => {
     }
   };
 
-  // Redirect if cart is empty
+  // Redirect if cart is empty (but allow direct checkout access)
   useEffect(() => {
     if (cart.length === 0) {
-      navigate("/cart");
+      // Instead of redirecting to cart, show empty state or allow direct checkout
+      console.log("Cart is empty - allowing direct checkout access");
     }
   }, [cart, navigate]);
 
+  // Show empty cart message instead of redirecting
   if (cart.length === 0) {
-    return null;
+    return (
+      <Layout>
+        <div className="min-h-screen bg-gradient-to-b from-[#FFF8F3] via-white to-[#FFF8F3] py-8 mt-[100px]">
+          <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+              <h1 className="text-3xl font-bold text-gray-800 mb-4">Direct Checkout</h1>
+              <p className="text-gray-600 mb-8">You can proceed with checkout even without items in cart.</p>
+              <button 
+                onClick={() => navigate("/")}
+                className="bg-gradient-to-r from-[#D4A574] to-[#C08860] text-white py-3 px-8 rounded-xl font-semibold hover:opacity-90 transition-all"
+              >
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
   }
 
   return (
