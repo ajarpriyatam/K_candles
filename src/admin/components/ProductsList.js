@@ -137,7 +137,7 @@ const ProductsList = () => {
           </div>
           <div>
             <div className="text-sm font-bold text-gray-900 mb-1">
-              {product.name}
+              {product.name.length > 35 ? `${product.name.substring(0, 35)}...` : product.name}
             </div>
             <div className="text-xs text-gray-500">
               {product.productBrand}

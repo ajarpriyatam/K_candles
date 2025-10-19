@@ -10,6 +10,7 @@ import LoginSignUp from "./pages/signup/LoginSignUp";
 import PrivateRoute from "./routes/private";
 import AdminRoute from "./routes/adminRoute";
 import Layout from "./admin/layout/Layout";
+import AdminSignIn from "./admin/pages/AdminSignIn";
 import PageNotFound from "./pages/PageNotFound";
 import Orders from "./pages/user/Order";
 import Profile from "./pages/user/Profile";
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="user/orders" element={<Orders />} />
         <Route path="user/profile" element={<Profile />} />
       </Route>
+      <Route path="/admin/signin" element={<AdminSignIn />} />
       <Route path="/" element={<AdminRoute />}>
         <Route path="admin/*" element={<Layout />} />
       </Route>

@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../component/Spinner";
 
 export default function AdminRoute() {
   const [ok, setOk] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const authCheck = async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API}/api/v2/auth/admin-auth`
-      );
-      if (res.data.ok) {
-        setOk(true);
-      } else {
-        setOk(false);
-      }
-    };
-    if (localStorage.getItem("token")) authCheck();
-  }, []);
+    // Check for hardcoded admin authentication
+    const token = localStorage.getItem("token");
+    const admin = localStorage.getItem("admin");
+    
+    if (token === "admin-token-12345" && admin === "true") {
+      setOk(true);
+    } else {
+      setOk(false);
+      navigate("/admin/signin");
+    }
+  }, [navigate]);
 
   return ok ? <Outlet /> : <Spinner path="" />;
 }
